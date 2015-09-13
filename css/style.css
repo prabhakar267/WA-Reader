@@ -18,6 +18,14 @@ nav a.navbar-brand{
 	font-weight: 900;	
 }
 
+.github-image{
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 10000;
+	width: 180px;
+}
+
 .upload-popup{
 	background-color: #fff;
 	box-sizing: border-box;
