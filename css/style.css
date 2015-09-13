@@ -1,0 +1,119 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700|Josefin+Sans);
+
+body{
+	background-color: #D9DBD5;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 70px;
+}
+
+nav.navbar{
+    background-color: #009688;
+    border: none;
+    box-shadow: 0 0 10px #000;
+    color: white;
+}
+
+nav a.navbar-brand{
+	color: white !important;
+	font-weight: 900;	
+}
+
+.upload-popup{
+	background-color: #fff;
+	box-sizing: border-box;
+	border-radius: 3px;
+	overflow: hidden;
+	padding: 22px 24px 20px;
+	width: 100%;
+	text-align: center;
+	display: table;
+}
+
+.upload-popup input{
+	margin-top: 10px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.aloo{
+	background-color: white;
+	margin: 3px;
+	width: 80%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1px 5px;
+}
+
+.aloo span{
+    background-color: rgb(137, 137, 137);
+    padding: 0 10px;
+    display: block;
+    font-size: 9px;
+    color: white;
+    font-weight: 200;
+    text-align: right;
+}
+
+.aloo .text{
+    text-align: justify;
+    word-wrap: break-word;
+    font-size: 16px;
+    padding: 0 7px;
+}
+
+.person0{
+	background-color: #FFFFFF;
+}
+.person1{
+	background-color: #DCF8C6;
+}
+.left-margin-20{
+	margin-left: 20%;
+}
+
+.list{
+	background-color: transparent;
+	position: fixed;
+}
+
+.list span{
+	display: block;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    font-size: 16px;
+    padding-right: 30px;
+    font-weight: 900;
+}
+
+.list span:first-child{
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+.list span:last-child{
+	border-bottom: none;
+	-webkit-border-bottom-right-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-bottomright: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+.list img{
+	width: 40px;
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	margin: 0 10px;
+}
+
+.time{
+	font-size: 10px;
+	text-align: right;
+	color: #626362;
+}
