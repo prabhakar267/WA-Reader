@@ -77,7 +77,7 @@ if($handle){
             echo '<span class="person' . $count . '"><img src="img/default-user-image.png">' . $name . '</span>';
         $count++;
     }
-    // unlink($filename);
+    unlink($filename);
 ?>
                 </div>
             </div>

@@ -18,6 +18,12 @@ nav a.navbar-brand{
 	font-weight: 900;	
 }
 
+nav .navbar-nav li a{
+	color: white !important;
+	font-weight: 900;
+	cursor: pointer;
+}
+
 .github-image{
 	position: absolute;
 	right: 0;

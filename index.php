@@ -26,7 +26,7 @@ if(isset($_FILES['file'])){
                     Upload Whatsapp Text (.txt) file and view chat in a readable format<br>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <input type="file" name="file">
-                        <input type="submit" class="btn btn-lg btn-warning" >
+                        <input type="submit" class="btn btn-warning" value="Get Conversation">
                     </form>
                 </div>
             </div>
