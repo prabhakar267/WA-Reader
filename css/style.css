@@ -28,7 +28,7 @@ nav .navbar-nav li a{
 	position: absolute;
 	right: 0;
 	top: 0;
-	z-index: 10000;
+	z-index: 1200;
 	width: 180px;
 }
 
