@@ -1,7 +1,7 @@
 # WhatsApp Reader
 PHP based web-app to easily see your chats with your friends in a familiar user interface of WhatsApp, because reading from the backup text file is too boring.
 It asks you to upload the ".txt" file of your chat. You can get the ".txt" file from the Email Conversation button in your WhatsApp.
-_It may not be 100% correct, since I simply built this to read a piece of chat I fonud in my Inbox, and I hope it is useful for several others like me._
+_It may not be 100% correct, since I simply built this to read a piece of chat I found in my Inbox, and I hope it is useful for several others like me._
 Here are some questions, you might ask before using this:
 
 *  **How do I export my chat history from WhatsApp?**
