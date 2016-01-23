@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_GET['filename'])){
-    header("Location: index.php");
+    header("Location: index.php?error=1");
 }
 
 $filename = 'conversations/' . $_GET['filename'];
@@ -27,17 +27,22 @@ if(fopen($filename, "r") == false){
 }
 $names_array = array();
 
-if($handle){
+if($handle)
+{
     $index = 0;
-    while (($line = fgets($handle)) !== false) {
+    while (($line = fgets($handle)) !== false)
+    {
         $line = explode('-', $line);
         $timestamp = $line[0];
 
         $timestamp = returntimestamp($timestamp);
 
-        if($timestamp == false){
+        if($timestamp == false)
+        {
             $line = implode('-', $line);
-        } else {
+        }
+        else
+        {
             unset($line[0]);
             $line = implode('-', $line);
 
@@ -45,16 +50,18 @@ if($handle){
             $name = trim($line[0]);
             unset($line[0]);
             $line = implode(':', $line);
-        
+
             if(in_array($name, $names_array) == false){
                 array_push($names_array, $name);
             }
             $index = array_search($name, $names_array);
         }
 
-        if($index%2 != 0){
+        if($index%2 != 0)
+        {
             echo '<div class="aloo person' . $index . ' left-margin-20">';
-        } else {
+        } else
+        {
             echo '<div class="aloo person' . $index . '">';
         }
         echo '<div class="text">' . emoji_unified_to_html(htmlspecialchars($line)) . '</div>';
@@ -63,7 +70,9 @@ if($handle){
         // die;
     }
     fclose($handle);
-} else {
+}
+else
+{
     // error opening the file.
 }
 ?>
@@ -95,8 +104,8 @@ function returntimestamp($time){
             . "(,)+( )*(?<date_day>(\d)*)"
             . "( )*(?<date_month>(\w)*)";
     $matches = array();
-    
-    if(preg_match("/^" . $pattern . "$/i", trim($time), $matches) > 0) {            
+
+    if(preg_match("/^" . $pattern . "$/i", trim($time), $matches) > 0) {
         $time_hour = floatval($matches['time_hour']);
         $time_minute = $matches['time_minute'];
         $time_type = $matches['time_type'];
@@ -110,7 +119,7 @@ function returntimestamp($time){
             . "(:)*(?<time_minute>(\d)*)"
             . "( )*(?<time_type>AM|PM)*";
         $matches = array();
-        if(preg_match("/^" . $pattern . "$/i", trim($time), $matches) > 0) {            
+        if(preg_match("/^" . $pattern . "$/i", trim($time), $matches) > 0) {
             $time_hour = intval($matches['time_hour']);
 
             if(!isset($matches['time_type'])){
@@ -136,11 +145,11 @@ function returntimestamp($time){
 
     if(isset($date_year))
         $timestamp = $date_year;
-    else 
+    else
         $timestamp = date('Y', time());
 
     $timestamp .= '-' . $date_month . '-' . $date_day . " " . $time_hour . ':' . $time_minute . ' ' . $time_type;
     return date('(d-M-y) h:i A' , strtotime($timestamp));
 }
-    
+
 ?>
