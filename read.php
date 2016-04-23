@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 if(!isset($_GET['filename'])){
     header("Location: index.php?error=1");
 }
@@ -18,30 +20,24 @@ header('Content-type: text/html; charset=UTF-8');
             <div class="col-md-8">
 <?php
 
-// $filename = 'test1.txt';
-if(fopen($filename, "r") == false){
+if(!fopen($filename, "r")){
     header('Location: index.php');
 } else {
     $handle = fopen($filename, "r");
 }
 $names_array = array();
 
-if($handle)
-{
+if($handle){
     $index = 0;
-    while (($line = fgets($handle)) !== false)
-    {
+    while (($line = fgets($handle)) !== false){
         $line = explode('-', $line);
         $timestamp = $line[0];
 
         $timestamp = returntimestamp($timestamp);
 
-        if($timestamp == false)
-        {
+        if($timestamp == false){
             $line = implode('-', $line);
-        }
-        else
-        {
+        } else {
             unset($line[0]);
             $line = implode('-', $line);
 
@@ -56,13 +52,12 @@ if($handle)
             $index = array_search($name, $names_array);
         }
 
-        if($index%2 != 0)
-        {
+        if($index%2 != 0){
             echo '<div class="aloo person' . $index . ' left-margin-20">';
-        } else
-        {
+        } else {
             echo '<div class="aloo person' . $index . '">';
         }
+
         echo '<div class="text">' . htmlspecialchars($line) . '</div>';
         echo '<div class="time">' . $timestamp . '</div>';
         echo "</div>\n";
@@ -70,15 +65,13 @@ if($handle)
     }
     fclose($handle);
 }
-else
-{
-    // error opening the file.
-}
+
 ?>
             </div>
             <div class="col-md-3 col-md-offset-1">
                 <div class="list">
 <?php
+
     $count = 0;
     foreach($names_array as $name){
         if($name != '')
@@ -86,6 +79,7 @@ else
         $count++;
     }
     unlink($filename);
+
 ?>
                 </div>
             </div>
