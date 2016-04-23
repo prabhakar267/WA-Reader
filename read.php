@@ -8,7 +8,6 @@ $filename = 'conversations/' . $_GET['filename'];
 
 header('Content-type: text/html; charset=UTF-8');
 
-    include('php-emoji/emoji.php');
     require 'inc/header.inc.php';
     require 'inc/navbar.inc.php';
 
@@ -64,7 +63,7 @@ if($handle)
         {
             echo '<div class="aloo person' . $index . '">';
         }
-        echo '<div class="text">' . emoji_unified_to_html(htmlspecialchars($line)) . '</div>';
+        echo '<div class="text">' . htmlspecialchars($line) . '</div>';
         echo '<div class="time">' . $timestamp . '</div>';
         echo "</div>\n";
         // die;
