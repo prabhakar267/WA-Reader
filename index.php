@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-04-26 13:58:12
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-04-28 11:56:13
+ * @Last Modified time: 2016-06-14 22:59:52
  */
 
 if(isset($_FILES['file'])){
@@ -18,7 +18,7 @@ if(isset($_FILES['file'])){
 
 	if(empty($errors)){
 		move_uploaded_file($file_tmp, "conversations/" . $file_name);
-		header('Location: read.php?filename=' . $file_name);
+		header('Location: sample-read.php?filename=' . $file_name);
 	} else {
 		$error_trigger = 1;
 	}
