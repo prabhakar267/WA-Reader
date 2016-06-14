@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-06-14 22:54:37
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-06-15 01:07:51
+ * @Last Modified time: 2016-06-15 01:10:01
  */
 
 require_once 'constants.inc.php';
@@ -183,21 +183,6 @@ function get_user_index(&$users_array, $user_name){
 function add_error_message(&$error_messages_array, &$error_flag, $error_message){
 	array_push($error_messages_array, $error_message);
 	$error_flag = true;
-}
-
-
-/**
- * function to get response from a URL using cURL
- * @param  [string] $url
- */
-function curl_URL_call($url){
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-	$output = curl_exec($ch);
-	curl_close($ch);
-	return $output;
 }
 
 
