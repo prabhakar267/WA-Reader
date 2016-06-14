@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-06-14 22:54:37
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-06-14 23:26:36
+ * @Last Modified time: 2016-06-14 23:49:28
  */
 
 /**
@@ -68,3 +68,26 @@ function returntimestamp($chat_string){
 	$timestamp .= '-' . $date_month . '-' . $date_day . " " . $time_hour . ':' . $time_minute . ' ' . $time_type;
 	return strtotime($timestamp);
 }
+
+
+/**
+ * function to track all the users involved in the chat
+ * @param  [array]	$users_array 
+ * @param  [string]	$user_name 
+ * @return [integer]				index of the user passed in parameters
+ */
+function get_user_index(&$users_array, $user_name){
+	if(!in_array($user_name, $users_array)){
+		array_push($users_array, $user_name);
+	}
+
+	$user_index = array_search($user_name, $users_array);
+	return $user_index;
+}
+
+
+function add_error_message(&$error_messages_array, &$error_flag, $error_message){
+	array_push($error_messages_array, $error_message);
+	$error_flag = true;
+}
+

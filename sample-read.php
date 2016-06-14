@@ -1,75 +1,93 @@
 <?php
-
-ob_start();
+/**
+ * @Author: prabhakar
+ * @Date:   2016-06-14 23:36:37
+ * @Last Modified by:   Prabhakar Gupta
+ * @Last Modified time: 2016-06-14 23:58:57
+ */
 
 require_once 'inc/function.inc.php';
 require_once 'inc/constants.inc.php';
 
+$error_flag = false;
+$errors = [];
+$chat = [];
+$names_array = [];
 
 if(!isset($_GET['filename'])){
-	header("Location: index.php?error=1");
-}
-
-$filename = 'conversations/' . $_GET['filename'];
-
-header('Content-type: text/html; charset=UTF-8');
-
-	// require 'inc/header.inc.php';
-	// require 'inc/navbar.inc.php';
-
-
-$chat = [];
-
-if(!fopen($filename, "r")){
-	header('Location: index.php');
+	add_error_message($errors, $error_flag, 'Invalid Request');
 } else {
-	$handle = fopen($filename, "r");
-}
-$names_array = array();
-
-if($handle){
-	$index = 0;
-	while (($line = fgets($handle)) !== false){
-		$line = explode('-', ($line));
-		$timestamp = $line[0];
-
-		$timestamp = returntimestamp($timestamp);
-
-		if($timestamp == false){
-			$line = implode('-', $line);
-			$last_element_index = sizeof($chat) - 1;
-
-			$chat[$last_element_index]['line'] .= '\n' . $line; 
+	$chat_file_path = 'conversations/' . $_GET['filename'];
+	
+	if(!file_exists($chat_file_path)){
+		add_error_message($errors, $error_flag, 'File 404<br>File is like a unicorn to our servers, file was not uploaded properly');
+	} else {
+		$file_handle = fopen($chat_file_path, "r");
+		
+		if(!$file_handle){
+			add_error_message($errors, $error_flag, 'Oh Snap!<br>Some technical glitch, it\'ll be resolved soon!');
 		} else {
-			unset($line[0]);
-			$line = implode('-', $line);
+			$index = 0;
 
-			$line = explode(':', trim($line));
-			$name = trim($line[0]);
-			unset($line[0]);
-			$line = implode(':', $line);
+			while (($line = fgets($file_handle)) !== false){
+				$line = explode('-', ($line));
+				$timestamp = $line[0];
 
-			if(in_array($name, $names_array) == false){
-				array_push($names_array, $name);
+				$timestamp = returntimestamp($timestamp);
+
+				if(!$timestamp){
+					$line = implode('-', $line);
+					$last_element_index = sizeof($chat) - 1;
+
+					$chat[$last_element_index]['line'] .= '\n' . $line; 
+				} else {
+					unset($line[0]);
+					$line = implode('-', $line);
+
+					$line = explode(':', trim($line));
+					$name = trim($line[0]);
+					unset($line[0]);
+					$line = implode(':', $line);
+
+					$final_chat_string = trim($line);
+
+					$user_index = get_user_index($names_array, $name);
+					if(strtolower($final_chat_string) == MEDIA_STRING)
+						$final_string_to_be_printed = null;
+					else
+						$final_string_to_be_printed = htmlspecialchars($final_chat_string);
+
+					$temp_element = [
+						'index'	=> $user_index,
+						'line'	=> $final_string_to_be_printed,
+						'time'	=> $timestamp
+					];
+
+					array_push($chat, $temp_element);
+				}
 			}
-			$index = array_search($name, $names_array);
+			// close file handle
+			fclose($file_handle);
 
-			if(strtolower(trim($line)) == MEDIA_STRING)
-				$final_string_to_be_printed = null;
-			else
-				$final_string_to_be_printed = htmlspecialchars($line);
-
-			$temp_element = [
-				'index'	=> $index,
-				'line'	=> $final_string_to_be_printed,
-				'time'	=> $timestamp
-			];
-
-			array_push($chat, $temp_element);
+			// delete file
+			// yes, i respect privary
+			unlink($chat_file_path);
 		}
 	}
-	fclose($handle);
 }
 
-echo json_encode($chat, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+
+$final_response = array(
+	'success' 	=> !$error_flag,
+);
+
+if($error_flag){
+	$final_response['errors'] 	= $errors;
+} else {
+	$final_response['chat'] 	= $chat;
+	$final_response['users']	= $names_array;
+}
+
+echo json_encode($final_response, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+
 
