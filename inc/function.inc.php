@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-06-14 22:54:37
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-06-15 00:02:06
+ * @Last Modified time: 2016-06-15 00:51:58
  */
 
 /**
@@ -97,3 +97,39 @@ function add_error_message(&$error_messages_array, &$error_flag, $error_message)
 	$error_flag = true;
 }
 
+
+/**
+ * function to get response from a URL using cURL
+ * @param  [string] $url
+ */
+function curl_URL_call($url){
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+	$output = curl_exec($ch);
+	curl_close($ch);
+	return $output;
+}
+
+
+/**
+ * function to get the URL of any page
+ * @param  [boolean]	$mode	if mode is true, it removes the part after last slash and returns with trailing slash
+ *                         		if mode is false, it returns complete URL
+ * @return [string]
+ */
+function get_current_url($mode=false){
+	$url_name = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	if($mode){
+		$url_array = explode('/', $url_name);
+		$last_index = sizeof($url_array) - 1;
+
+		unset($url_array[$last_index]);
+
+		$url_name = implode('/', $url_array);
+		return $url_name . '/';
+	} else {
+		return $url_name;
+	}
+}
