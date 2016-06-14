@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-06-14 22:54:37
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-06-14 23:49:28
+ * @Last Modified time: 2016-06-15 00:02:06
  */
 
 /**
@@ -86,6 +86,12 @@ function get_user_index(&$users_array, $user_name){
 }
 
 
+/**
+ * function to neatly add error messages to error messages array
+ * @param [array]	$error_messages_array
+ * @param [boolean]	$error_flag
+ * @param [string]	$error_message
+ */
 function add_error_message(&$error_messages_array, &$error_flag, $error_message){
 	array_push($error_messages_array, $error_message);
 	$error_flag = true;
