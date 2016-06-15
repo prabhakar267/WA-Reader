@@ -69,6 +69,22 @@ nav .navbar-nav li a{
     text-align: right;
 }
 
+.msg_group_head{
+
+	background-color: #ccccff;
+	display: inline-block;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: justify;
+    word-wrap: break-word;
+    padding-left: 20px
+    font-size: 10px;
+    font-weight: 300;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1px 5px;	
+}
 .aloo .text{
     text-align: justify;
     word-wrap: break-word;
@@ -101,12 +117,7 @@ nav .navbar-nav li a{
 }
 
 .list span:first-child{
-	-webkit-border-top-left-radius: 15px;
-	-webkit-border-top-right-radius: 15px;
-	-moz-border-radius-topleft: 15px;
-	-moz-border-radius-topright: 15px;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+
 }
 .list span:last-child{
 	border-bottom: none;
