@@ -1,11 +1,3 @@
-<?php
-
-	$static_instruction_strings = array(
-		"txt"       => '<a href="https://en.wikipedia.org/wiki/TXT" target="_blank">.txt</a>',
-		"prabhakar" => '<a href="http://www.prabhakargupta.com" target="_blank">Prabhakar Gupta</a>'
-	);
-
-?>
 <!doctype html>
 <html>
 <head>
@@ -24,6 +16,7 @@
 <a href="https://github.com/prabhakar267/whatsapp-reader" target="_blank">
 	<img src="img/right-dusk-blue%402x.png" class="github-image visible-lg">
 </a>
+
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
 	<div class="container-fluid">
@@ -53,7 +46,7 @@
 				<h4 class="modal-title" id="myModalLabel">Whatsapp Reader</h4>
 			</div>
 			<div class="modal-body text-justify">
-				<strong>WhatsApp Reader</strong> is a simple PHP based web-app to easily see your chats with your friends in a familiar user interface of WhatsApp, because reading from the backup text file is too boring.<br>It asks you to upload the "<?php echo $static_instruction_strings['txt'];?>" file of your chat. You can get the "<?php echo $static_instruction_strings['txt'];?>" file from the <b>Email Conversation</b> button in your WhatsApp.<br>
+				<strong>WhatsApp Reader</strong> is a simple PHP based web-app to easily see your chats with your friends in a familiar user interface of WhatsApp, because reading from the backup text file is too boring.<br>It asks you to upload the ".txt" file of your chat. You can get the ".txt" file from the <b>Email Conversation</b> button in your WhatsApp.<br>
 				<i><small>It may not be 100% correct, since I simply built this to read a piece of chat I fonud in my Inbox, and I hope it is useful for several others like me.</small></i>
 				<hr>
 				Here are some questions, you might ask before using this:
@@ -76,7 +69,7 @@
 					</li>
 					<li>
 						<strong>How do I thank the person behind this awesome app?</strong><br>
-						<pre>Simple. Find him here.<br><?php echo $static_instruction_strings['prabhakar'];?></pre>
+						<pre>Simple. Find him here.<br><a href="http://www.prabhakargupta.com" target="_blank">Prabhakar Gupta</a></pre>
 					</li>
 				</ul>
 			</div>
@@ -87,6 +80,7 @@
 	</div>
 </div>
 <div class="container">
+	<div id="errors" class="hidden"></div>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="upload-popup">
@@ -100,52 +94,9 @@
 	</div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-
-
-<script type="text/javascript">
-
-$('form').on('submit', uploadFiles);
-
-var files;
-
-$('input[type=file]').on('change', prepareUpload);
-
-function prepareUpload(event){
-	files = event.target.files;
-}
-
-// Catch the form submit and upload the files
-function uploadFiles(event){
-	event.stopPropagation(); // Stop stuff happening
-	event.preventDefault(); // Totally stop stuff happening
-
-	var data = new FormData();
-	$.each(files, function(key, value)
-	{
-		data.append(key, value);
-	});
-
-	$.ajax({
-		url: 'upload-file.php',
-		type: 'POST',
-		data: data,
-		cache: false,
-		dataType: 'json',
-		processData: false, // Don't process the files
-		contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-		
-		success: function(response){
-			console.log(response);
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			console.log('ERRORS: ' + textStatus);
-		}
-	});
-}
-</script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>
