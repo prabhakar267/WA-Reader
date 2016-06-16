@@ -2,7 +2,7 @@
 * @Author: prabhakar
 * @Date:   2016-06-16 23:43:25
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-16 23:56:06
+* @Last Modified time: 2016-06-17 00:36:02
 */
 
 
@@ -19,23 +19,20 @@ function show_error_messages(errors_array){
 }
 
 
-$('form').on('submit', uploadFiles);
-var files;
-
-$('input[type=file]').on('change', prepareUpload);
-
 function prepareUpload(event){
 	files = event.target.files;
 }
 
-// Catch the form submit and upload the files
-function uploadFiles(event){
-	event.stopPropagation(); // Stop stuff happening
-	event.preventDefault(); // Totally stop stuff happening
 
-	var data = new FormData();
-	$.each(files, function(key, value)
-	{
+function uploadFiles(event){
+	event.stopPropagation();
+	event.preventDefault();
+
+	var data = new FormData(),
+		submit_button = $('#submit_button')
+		file_input = submit_button.parent('form').children('input[name="file"]');
+
+	$.each(files, function(key, value){
 		data.append(key, value);
 	});
 
@@ -45,18 +42,62 @@ function uploadFiles(event){
 		data: data,
 		cache: false,
 		dataType: 'json',
-		processData: false, // Don't process the files
-		contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+		processData: false,
+		contentType: false,
 		
 		success: function(response){
-			console.log(response);
-			console.log(response.errors);
-			// response = jQuery.parseJSON(response);
-			// type
-			show_error_messages(response.errors);
+			if(response.success){
+				var upload_prompt_div = $('#upload-prompt'),
+					conversation_div = $('#whatsapp-conversation'),
+					chat_div = conversation_div.find('#chat'),
+					users_div = conversation_div.find('.list');
+
+				upload_prompt_div.hide();
+
+				for(var chat in response.chat){
+					chat_index = response.chat[chat].index;
+					chat_line = response.chat[chat].line;
+					chat_time = response.chat[chat].time;
+
+					var chat_html = '<div class="aloo person' + chat_index + '"><div class="text">' + chat_line + '</div><div class="time">' + chat_time + '</div></div>';
+
+					chat_div.append(chat_html);
+				}
+
+				for(var user in response.users){
+					var user_html = '<span class="person' + user + '"><img src="img/default-user-image.png">' + response.users[user] + '</span>';
+					users_div.append(user_html);
+				}
+			} else {
+				show_error_messages(response.errors);
+			}
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-			console.log('ERRORS: ' + textStatus);
+			errors = ['Some technical glitch! Please retry after reloading the page!'];
+			show_error_messages(errors);
+
+		}, 
+		beforeSend: function(){
+			submit_button.val('Getting Conversation');
+			submit_button.attr('disabled', '');
+
+			file_input.attr('disabled', '');
+		},
+		complete: function(){
+			submit_button.val('Get Conversation');
+			submit_button.removeAttr('disabled');
+
+			file_input.removeAttr('disabled');
 		}
 	});
 }
+
+
+$(document).ready(function(){
+	var files;
+	
+	$('form').on('submit', uploadFiles);
+	$('input[type=file]').on('change', prepareUpload);
+
+})
+

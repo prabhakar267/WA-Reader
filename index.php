@@ -81,17 +81,23 @@
 </div>
 <div class="container">
 	<div id="errors" class="hidden"></div>
-	<div class="row">
+	<div class="row" id="upload-prompt">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="upload-popup">
 				Upload Whatsapp Text (.txt) file and view chat in a readable format<br>
 				<form enctype="multipart/form-data">
 					<input type="file" name="file" required>
-					<input type="submit" class="btn btn-warning" value="Get Conversation">
+					<input type="submit" class="btn btn-warning" id="submit_button" value="Get Conversation">
 				</form>
 			</div>
 		</div>
 	</div>
+	<div class="row" id="whatsapp-conversation">
+		<div class="col-md-8" id="chat"></div>
+		<div class="col-md-3 col-md-offset-1">
+            <div class="list"></div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="js/jquery.min.js"></script>

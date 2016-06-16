@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-06-15 00:15:08
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-06-16 23:30:28
+ * @Last Modified time: 2016-06-17 00:23:10
  */
 
 require_once 'inc/function.inc.php';
@@ -18,6 +18,9 @@ if(isset($_FILES[0]['type'])){
 	if($_FILES[0]['type'] != 'text/plain'){
 		add_error_message($errors, $error_flag, 'Invalid file type uploaded!');
 	} else {
+		$file_name = $_FILES[0]['name'];
+		$file_tmp = $_FILES[0]['tmp_name'];
+
 		move_uploaded_file($file_tmp, "conversations/" . $file_name);
 
 		$url = get_current_url(true) . $api_url . $file_name;
