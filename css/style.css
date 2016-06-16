@@ -57,6 +57,7 @@ nav .navbar-nav li a{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	padding: 1px 5px;
+	white-space: pre-wrap;
 }
 
 .aloo span{

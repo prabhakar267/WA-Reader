@@ -2,7 +2,7 @@
 * @Author: prabhakar
 * @Date:   2016-06-16 23:43:25
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-17 00:36:02
+* @Last Modified time: 2016-06-17 00:56:51
 */
 
 
@@ -27,6 +27,7 @@ function prepareUpload(event){
 function uploadFiles(event){
 	event.stopPropagation();
 	event.preventDefault();
+	moment();
 
 	var data = new FormData(),
 		submit_button = $('#submit_button')
@@ -58,6 +59,12 @@ function uploadFiles(event){
 					chat_index = response.chat[chat].index;
 					chat_line = response.chat[chat].line;
 					chat_time = response.chat[chat].time;
+
+					if(chat_line != null)
+						chat_line.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+					if(chat_time != null)
+						chat_time = moment(chat_time * 1000).format("DD-MM-YYYY h:mm:ss");
 
 					var chat_html = '<div class="aloo person' + chat_index + '"><div class="text">' + chat_line + '</div><div class="time">' + chat_time + '</div></div>';
 

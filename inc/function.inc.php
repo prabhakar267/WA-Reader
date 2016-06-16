@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-06-14 22:54:37
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-06-15 01:10:01
+ * @Last Modified time: 2016-06-17 00:48:41
  */
 
 require_once 'constants.inc.php';
@@ -42,7 +42,7 @@ function whatsapp_reader($filename){
 					$line = implode('-', $line);
 					$last_element_index = sizeof($chat) - 1;
 
-					$chat[$last_element_index]['line'] .= '\n' . $line; 
+					$chat[$last_element_index]['line'] .= "\n" . $line; 
 				} else {
 					unset($line[0]);
 					$line = implode('-', $line);
