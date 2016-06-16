@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>WhatsApp Reader | By Prabhakar Gupta</title>
-	<link rel="shortcut icon" href="img/whatsapp.png">
+	<link rel="shortcut icon" href="img/favicon.png">
 </head>
 <body>
 <a href="https://github.com/prabhakar267/whatsapp-reader" target="_blank">
