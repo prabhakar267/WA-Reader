@@ -3,7 +3,7 @@
  * @Author: prabhakar
  * @Date:   2016-06-14 22:54:37
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-06-17 00:48:41
+ * @Last Modified time: 2016-06-17 23:37:35
  */
 
 require_once 'constants.inc.php';
@@ -31,6 +31,7 @@ function whatsapp_reader($filename){
 			add_error_message($errors, $error_flag, 'Oh Snap!<br>Some technical glitch, it\'ll be resolved soon!');
 		} else {
 			$index = 0;
+			$first_message = true;
 
 			while (($line = fgets($file_handle)) !== false){
 				$line = explode('-', ($line));
@@ -39,11 +40,20 @@ function whatsapp_reader($filename){
 				$timestamp = returntimestamp($timestamp);
 
 				if(!$timestamp){
+					if($first_message){
+						add_error_message($errors, $error_flag, 'It wasn\'t a valid text file or we were not able to convert it!');
+						$first_message = false;
+						break;
+					}
 					$line = implode('-', $line);
 					$last_element_index = sizeof($chat) - 1;
 
 					$chat[$last_element_index]['line'] .= "\n" . $line; 
 				} else {
+					if($first_message){
+						$first_message = false;
+					}
+					
 					unset($line[0]);
 					$line = implode('-', $line);
 
