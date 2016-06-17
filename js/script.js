@@ -2,7 +2,7 @@
 * @Author: prabhakar
 * @Date:   2016-06-16 23:43:25
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-17 00:56:51
+* @Last Modified time: 2016-06-17 23:32:18
 */
 
 
@@ -51,7 +51,7 @@ function uploadFiles(event){
 				var upload_prompt_div = $('#upload-prompt'),
 					conversation_div = $('#whatsapp-conversation'),
 					chat_div = conversation_div.find('#chat'),
-					users_div = conversation_div.find('.list');
+					users_div = conversation_div.find('#users_list');
 
 				upload_prompt_div.hide();
 
@@ -60,13 +60,19 @@ function uploadFiles(event){
 					chat_line = response.chat[chat].line;
 					chat_time = response.chat[chat].time;
 
-					if(chat_line != null)
-						chat_line.replace(/(?:\r\n|\r|\n)/g, '<br>');
+					if(chat_line != null){
+						chat_line.replace(/(?:\r\n|\r|\n)/g, '<br>');	
+					} else {
+						chat_line = "*MEDIA HERE*";
+					}
 
 					if(chat_time != null)
 						chat_time = moment(chat_time * 1000).format("DD-MM-YYYY h:mm:ss");
 
-					var chat_html = '<div class="aloo person' + chat_index + '"><div class="text">' + chat_line + '</div><div class="time">' + chat_time + '</div></div>';
+					if(chat_index % 2 == 0)
+						var chat_html = '<div class="aloo person' + chat_index + '"><div class="text">' + chat_line + '</div><div class="time">' + chat_time + '</div></div>';
+					else
+						var chat_html = '<div class="aloo person' + chat_index + ' left-margin-20"><div class="text">' + chat_line + '</div><div class="time">' + chat_time + '</div></div>';
 
 					chat_div.append(chat_html);
 				}
