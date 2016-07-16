@@ -121,7 +121,7 @@ if($handle){
              
         
         }
-// main processing starts here
+    // main processing starts here
     if (empty($heading))
      {
         if($timestamp == false){
@@ -155,10 +155,22 @@ if($handle){
                 array_push($names_array, $name);
             }
             $index = array_search($name, $names_array);
+            
+
+            //remove follwoing foreach loop in the end
+            //used only for debugging purposes
+            /*
+
+            foreach ($names_array as $name) {
+                echo $name;
+            }
+
+            */
         }
 
 
         if($index%2 != 0){
+            //echo $index;
             echo '<div class="aloo person' . $index . ' left-margin-20">';
         } else {
             echo '<div class="aloo person' . $index . '">';
@@ -181,10 +193,13 @@ if($handle){
 <?php
 
     $count = 0;
-    foreach($names_array as $name){
+
+
+    foreach($names_array as $i => $name){
         if($name != '')
-            #echo $name;
-            echo '<span class="person' . $count . '"><img src="img/default-user-image.png">' . $name . '</span>';
+            //echo $name;
+            //echo $i%2;
+            echo '<span class="person' . $i%2 . '"><img src="img/default-user-image.png">' . $name . '</span>';
         $count++;
         #echo $count;
     }
