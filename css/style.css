@@ -83,7 +83,7 @@ nav .navbar-nav li a{
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	padding: 1px 5px;	
+	padding: 1px 5px;
 }
 .aloo .text{
     text-align: justify;
@@ -110,8 +110,8 @@ nav .navbar-nav li a{
 .list span{
 	display: block;
     border-bottom: 1px solid black;
-    padding: 10px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 12px;
     padding-right: 30px;
     font-weight: 900;
 }
