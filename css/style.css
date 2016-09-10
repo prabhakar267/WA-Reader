@@ -24,14 +24,6 @@ nav .navbar-nav li a{
 	cursor: pointer;
 }
 
-.github-image{
-	position: fixed;
-	right: 0;
-	top: 0;
-	z-index: 1200;
-	width: 180px;
-}
-
 .upload-popup{
 	background-color: #fff;
 	box-sizing: border-box;
@@ -56,7 +48,8 @@ nav .navbar-nav li a{
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	padding: 1px 5px;
+	/*padding: 1px 5px;*/
+	white-space: pre-wrap;
 }
 
 .aloo span{
@@ -88,7 +81,7 @@ nav .navbar-nav li a{
 .aloo .text{
     text-align: justify;
     word-wrap: break-word;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 7px;
 }
 
@@ -102,12 +95,13 @@ nav .navbar-nav li a{
 	margin-left: 20%;
 }
 
-.list{
+#users_list{
 	background-color: transparent;
 	position: fixed;
+	right: 0;
 }
 
-.list span{
+#users_list span{
 	display: block;
     border-bottom: 1px solid black;
     padding: 5px;
@@ -116,20 +110,20 @@ nav .navbar-nav li a{
     font-weight: 900;
 }
 
-.list span:first-child{
 
+#users_list span:first-child{
+	-webkit-border-top-left-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	border-top-left-radius: 15px;
 }
-.list span:last-child{
+#users_list span:last-child{
 	border-bottom: none;
-	-webkit-border-bottom-right-radius: 15px;
 	-webkit-border-bottom-left-radius: 15px;
-	-moz-border-radius-bottomright: 15px;
 	-moz-border-radius-bottomleft: 15px;
-	border-bottom-right-radius: 15px;
 	border-bottom-left-radius: 15px;
 }
 
-.list img{
+#users_list img{
 	width: 40px;
 	-webkit-border-radius: 999px;
 	-moz-border-radius: 999px;
@@ -141,4 +135,29 @@ nav .navbar-nav li a{
 	font-size: 10px;
 	text-align: right;
 	color: #626362;
+	margin-right: 5px;
+}
+
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave{
+    0%, 100% {
+        transform: rotate(0)
+    }
+    20%, 60% {
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        transform: rotate(10deg)
+    }
+}
+@media (max-width: 500px){
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
 }
