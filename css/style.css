@@ -62,6 +62,22 @@ nav .navbar-nav li a{
     text-align: right;
 }
 
+.msg_group_head{
+
+	background-color: #ccccff;
+	display: inline-block;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: justify;
+    word-wrap: break-word;
+    padding-left: 20px
+    font-size: 10px;
+    font-weight: 300;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1px 5px;
+}
 .aloo .text{
     text-align: justify;
     word-wrap: break-word;
@@ -88,11 +104,12 @@ nav .navbar-nav li a{
 #users_list span{
 	display: block;
     border-bottom: 1px solid black;
-    padding: 10px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 12px;
     padding-right: 30px;
     font-weight: 900;
 }
+
 
 #users_list span:first-child{
 	-webkit-border-top-left-radius: 15px;
