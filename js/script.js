@@ -88,6 +88,7 @@ function uploadFiles(){
             submit_button.removeAttr('disabled');
 
             file_input.removeAttr('disabled');
+            $('#chat').minEmoji();
         }
     });
 }

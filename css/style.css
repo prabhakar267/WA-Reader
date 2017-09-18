@@ -52,18 +52,7 @@ nav .navbar-nav li a{
 	white-space: pre-wrap;
 }
 
-.aloo span{
-    background-color: rgb(137, 137, 137);
-    padding: 0 10px;
-    display: block;
-    font-size: 9px;
-    color: white;
-    font-weight: 200;
-    text-align: right;
-}
-
 .msg_group_head{
-
 	background-color: #ccccff;
 	display: inline-block;
     margin-left: 30%;
