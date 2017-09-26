@@ -1,0 +1,152 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700|Josefin+Sans);
+
+body{
+	background-color: #D9DBD5;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 70px;
+}
+
+nav.navbar{
+    background-color: #009688;
+    border: none;
+    box-shadow: 0 0 10px #000;
+    color: white;
+}
+
+nav a.navbar-brand{
+	color: white !important;
+	font-weight: 900;
+}
+
+nav .navbar-nav li a{
+	color: white !important;
+	font-weight: 900;
+	cursor: pointer;
+}
+
+.upload-popup{
+	background-color: #fff;
+	box-sizing: border-box;
+	border-radius: 3px;
+	overflow: hidden;
+	padding: 22px 24px 20px;
+	width: 100%;
+	text-align: center;
+	display: table;
+}
+
+.upload-popup input{
+	margin-top: 10px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.aloo{
+	background-color: white;
+	margin: 3px;
+	width: 80%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	/*padding: 1px 5px;*/
+	white-space: pre-wrap;
+}
+
+.msg_group_head{
+	background-color: #ccccff;
+	display: inline-block;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: justify;
+    word-wrap: break-word;
+    padding-left: 20px
+    font-size: 10px;
+    font-weight: 300;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 1px 5px;
+}
+.aloo .text{
+    text-align: justify;
+    word-wrap: break-word;
+    font-size: 14px;
+    padding: 0 7px;
+}
+
+.person0{
+	background-color: #FFFFFF;
+}
+.person1{
+	background-color: #DCF8C6;
+}
+.left-margin-20{
+	margin-left: 20%;
+}
+
+#users_list{
+	background-color: transparent;
+	position: fixed;
+	right: 0;
+}
+
+#users_list span{
+	display: block;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    font-size: 12px;
+    padding-right: 30px;
+    font-weight: 900;
+}
+
+
+#users_list span:first-child{
+	-webkit-border-top-left-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	border-top-left-radius: 15px;
+}
+#users_list span:last-child{
+	border-bottom: none;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+#users_list img{
+	width: 40px;
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	margin: 0 10px;
+}
+
+.time{
+	font-size: 10px;
+	text-align: right;
+	color: #626362;
+	margin-right: 5px;
+}
+
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave{
+    0%, 100% {
+        transform: rotate(0)
+    }
+    20%, 60% {
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        transform: rotate(10deg)
+    }
+}
+@media (max-width: 500px){
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
