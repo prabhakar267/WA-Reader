@@ -9,16 +9,22 @@ function show_error_messages(errors_array){
     errors_div.removeClass('hidden');
 }
 
+function submitForm (event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (typeof files != 'undefined') {
+        uploadFiles(event);
+    } else {
+        show_error_messages(['Please upload a file to proceed.']);
+    }
+}
 
 function prepareUpload(event){
     files = event.target.files;
 }
 
-
 function uploadFiles(event){
-    event.stopPropagation();
-    event.preventDefault();
-
     var data = new FormData(),
         submit_button = $('#submit_button')
         file_input = submit_button.parent('form').children('input[name="file"]');
@@ -71,7 +77,6 @@ function uploadFiles(event){
         error: function(jqXHR, textStatus, errorThrown){
             errors = ['Some technical glitch! Please retry after reloading the page!'];
             show_error_messages(errors);
-
         }, 
         beforeSend: function(){
             submit_button.val('Getting Conversation');
@@ -101,7 +106,7 @@ function restoreForm(event) {
 
 
 $(document).ready(function(){    
-    $('form').on('submit', uploadFiles);
+    $('form').on('submit', submitForm);
     $('input[type=file]').on('change', prepareUpload);
     $('.nav-back').click(restoreForm);
 })
