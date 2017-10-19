@@ -15,7 +15,7 @@ function prepareUpload(event){
 }
 
 
-function uploadFiles(){
+function uploadFiles(event){
     event.stopPropagation();
     event.preventDefault();
 
