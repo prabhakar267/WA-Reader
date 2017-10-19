@@ -38,12 +38,9 @@ function uploadFiles(event){
         
         success: function(response){
             if(response.success){
-                var upload_prompt_div = $('#upload-prompt'),
-                    conversation_div = $('#whatsapp-conversation'),
-                    chat_div = conversation_div.find('#chat'),
-                    users_div = conversation_div.find('#users_list');
-
                 upload_prompt_div.hide();
+                back_nav.show();
+                logo_nav.addClass('nav-back');
 
                 for(var chat in response.chat){
                     chat_index = response.chat[chat].i;
@@ -94,11 +91,28 @@ function uploadFiles(event){
 }
 
 
-$(document).ready(function(){
-    var files;
+function restoreForm(event) {
+    event.preventDefault();
     
+    chat_div.empty();
+    users_div.empty();
+    logo_nav.removeClass('nav-back');
+    back_nav.hide();
+    upload_prompt_div.show();
+}
+
+
+$(document).ready(function(){    
     $('form').on('submit', uploadFiles);
     $('input[type=file]').on('change', prepareUpload);
-
+    $('nav').on('click', '.nav-back', restoreForm);
 })
 
+
+var files,
+    upload_prompt_div = $('#upload-prompt'),
+    conversation_div = $('#whatsapp-conversation'),
+    chat_div = conversation_div.find('#chat'),
+    users_div = conversation_div.find('#users_list'),
+    logo_nav = $('.navbar-brand'),
+    back_nav = $('li.nav-back');
