@@ -7,8 +7,6 @@ function show_error_messages(errors_array){
         errors_div.html(error_html);
     }
     errors_div.removeClass('hidden');
-
-    $(errors_div).delay(3000).fadeOut();
 }
 
 
@@ -20,6 +18,9 @@ function prepareUpload(event){
 function uploadFiles(event){
     event.stopPropagation();
     event.preventDefault();
+
+
+    $(errors_div).html('');
 
     var data = new FormData(),
         submit_button = $('#submit_button')
