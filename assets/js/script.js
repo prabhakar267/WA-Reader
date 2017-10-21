@@ -7,6 +7,8 @@ function show_error_messages(errors_array){
         errors_div.html(error_html);
     }
     errors_div.removeClass('hidden');
+
+    $(errors_div).delay(3000).fadeOut();
 }
 
 
