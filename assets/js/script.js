@@ -19,8 +19,8 @@ function uploadFiles(event){
     event.stopPropagation();
     event.preventDefault();
 
-
-    $(errors_div).html('');
+    
+    $('#errors').html('');
 
     var data = new FormData(),
         submit_button = $('#submit_button')
