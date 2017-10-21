@@ -1,10 +1,10 @@
 <?php
-// used to remove redundant data
-define("MEDIA_STRING", "<media omitted>");
 
-$TIMESTAMP_DELIMITER = ['-', ':'];
+// Regex to detect a message.
+$MESSAGE_REGEX = "/(?<timestamp>(?:(?!: ).)*): (?<username>(?:(?!: ).)*): (?<message>.+)/";
 
-$IGNORE_STRINGS = [
-    "Messages you send to this group are now secured with end-to-end encryption",
-];
+// Regex to detect a status message (especially useful in group chats).
+$STATUS_REGEX = "/(?<timestamp>(?:(?!: ).)*): (?<status>(?:(?!: ).)*)/";
 
+// Regex to detect media messages (images, contact cards, audio, etc.).
+$MEDIA_REGEX = "/.+omitted>/";

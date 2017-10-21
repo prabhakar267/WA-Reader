@@ -24,49 +24,64 @@ function parseChatFile($filename){
             addErrorMessage($errors, $error_flag, 'Oh Snap!<br>Some technical glitch, it\'ll be resolved soon!');
         } else {
             $index = 0;
-            $first_message = true;
+            global $MESSAGE_REGEX;
+            global $STATUS_REGEX;
+            global $MEDIA_REGEX;
+
+            $current_chat_block = null;
 
             while (($line = fgets($file_handle)) !== false){
-                $line_attributes = explode('-', ($line));
-                if(sizeof($line_attributes) > 0) {
-                    $first_message = true;
+                $line_attributes = array();
+
+                // Try matching for a new message.
+                preg_match($MESSAGE_REGEX, trim($line), $line_attributes);
+
+                // Match succeeded. It's a new message.
+                if ($line_attributes != []) {
+                    // Ignore media messages.
+                    if (preg_match($MEDIA_REGEX, $line_attributes['message']))
+                        continue;
+
+                    if ($current_chat_block != null)
+                        array_push($chat, $current_chat_block);
+
+                    // Create the chat block.
+                    $converted_timestamp = getConvertedTimestamp($line_attributes['timestamp']);
+                    $timestamp = $converted_timestamp == false ? $line_attributes['timestamp'] : $converted_timestamp;
+                    $userID = getUserIndex($names_array, $line_attributes['username']);
+                    $message = htmlspecialchars($line_attributes['message']);
+
+                    $current_chat_block = createChatBlock($timestamp, $userID, $message);
+
+                // Match failed. It's not a new message. Needs further checking.
+                } else {
+                    // Try matching for a status message.
+                    preg_match($STATUS_REGEX, trim($line), $line_attributes);
+
+                    // Match succeeded. It's a status message.
+                    if ($line_attributes != []) {
+                        if ($current_chat_block != null)
+                            array_push($chat, $current_chat_block);
+
+                        // Generate the chat block.
+                        $converted_timestamp = getConvertedTimestamp($line_attributes['timestamp']);
+                        $timestamp = $converted_timestamp == false ? $line_attributes['timestamp'] : $converted_timestamp;
+                        $message = htmlspecialchars($line_attributes['status']);
+                    
+                        // User ID for status messages is -1.
+                        $current_chat_block = createChatBlock($timestamp, -1, $message);
+
+                    // Match failed. It's a multi-line message.
+                    } else {
+                        // Should always be true, but just in case the file format changes.
+                        if ($current_chat_block != null)
+                            $current_chat_block['p'] .= '<br>' . htmlspecialchars(trim($line));
+                    }
                 }
-
-                $converted_timestamp = getConvertedTimestamp($line_attributes[0]);
-                if($converted_timestamp === false)
-                    $time_attribute = $line_attributes[0];
-                else
-                    $time_attribute = $converted_timestamp;
-
-                unset($line_attributes[0]);
-                $line_attributes = implode('-', $line_attributes);
-                $line_attributes = explode(':', trim($line_attributes));
-
-                if(sizeof($line_attributes) == 1)
-                    continue;
-
-                $user_attribute = trim($line_attributes[0]);
-                unset($line_attributes[0]);
-                $line_attributes = implode(':', $line_attributes);
-
-                $text_attribute = trim($line_attributes);
-
-                $user_index = getUserIndex($names_array, $user_attribute);
-
-                if(strtolower($text_attribute) == MEDIA_STRING)
-                    $text_attribute = null;
-                else
-                    $text_attribute = htmlspecialchars($text_attribute);
-
-                $chat_block = [
-                    'i' => $user_index,
-                    'p' => $text_attribute,
-                    't' => $time_attribute
-                ];
-
-                array_push($chat, $chat_block);
-                $first_message = false;
             }
+            if (!$first_message)
+                array_push($chat, $current_chat_block);
+
             // close file handle
             fclose($file_handle);
 
@@ -93,6 +108,22 @@ function parseChatFile($filename){
 
     return $final_response;
 }
+
+
+/**
+ * function used to create a new chat block.
+ * @param [string] $timestamp The message's timestamp.
+ * @param [integer] $user_id The user's ID.
+ * @param [string] $message The chat message.
+ */
+function createChatBlock($timestamp, $user_id, $message) {
+    return array(
+        't' => $timestamp,
+        'i' => $user_id,
+        'p' => $message
+    );
+}
+
 
 /**
  * function to get the timestamp from the messages
