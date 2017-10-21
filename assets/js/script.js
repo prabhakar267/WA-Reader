@@ -40,7 +40,6 @@ function uploadFiles(event){
             if(response.success){
                 upload_prompt_div.hide();
                 back_nav.show();
-                logo_nav.addClass('nav-back');
 
                 for(var chat in response.chat){
                     chat_index = response.chat[chat].i;
@@ -96,7 +95,6 @@ function restoreForm(event) {
     
     chat_div.empty();
     users_div.empty();
-    logo_nav.removeClass('nav-back');
     back_nav.hide();
     upload_prompt_div.show();
 }
@@ -105,7 +103,7 @@ function restoreForm(event) {
 $(document).ready(function(){    
     $('form').on('submit', uploadFiles);
     $('input[type=file]').on('change', prepareUpload);
-    $('nav').on('click', '.nav-back', restoreForm);
+    $('.nav-back').click(restoreForm);
 })
 
 
