@@ -13,6 +13,8 @@ function submitForm (event) {
     event.stopPropagation();
     event.preventDefault();
 
+    $('#errors').html('');
+    
     if (typeof files != 'undefined') {
         uploadFiles(event);
     } else {
