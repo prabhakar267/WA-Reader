@@ -1,6 +1,8 @@
 function show_error_messages(errors_array){
     var errors_div = $('#errors');
 
+    errors_div.html('');
+
     for(var i=0; i<errors_array.length; i++){
         var message = errors_array[i],
             error_html = '<div class="alert alert-danger alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>' + message + '</strong></div>';
