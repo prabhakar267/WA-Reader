@@ -36,7 +36,7 @@ function uploadFiles(event){
     });
 
     $.ajax({
-        url: 'parse/upload-file.php',
+        url: '/parse-file',
         type: 'POST',
         data: data,
         cache: false,
@@ -69,7 +69,8 @@ function uploadFiles(event){
                 }
 
                 for(var user in response.users){
-                    var user_html = '<span class="person' + user + '"><img src="assets/img/default-user-image.png">' + response.users[user] + '</span>';
+                    var user_image_path = "/static/img/default-user-image.png",
+                        user_html = '<span class="person' + user + '"><img src="'+ user_image_path +'">' + response.users[user] + '</span>';
                     users_div.append(user_html);
                 }
             } else {
@@ -81,7 +82,7 @@ function uploadFiles(event){
             show_error_messages(errors);
         }, 
         beforeSend: function(){
-            submit_button.val('Getting Conversation');
+            submit_button.val('Getting Conversation...');
             submit_button.attr('disabled', '');
 
             file_input.attr('disabled', '');

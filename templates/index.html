@@ -7,10 +7,10 @@
     <meta name="author" content="Prabhakar Gupta">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/minEmoji2.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/minEmoji2.css') }}">
     <title>WA Reader | By Prabhakar Gupta</title>
-    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
 </head>
 
 <body>
@@ -47,7 +47,7 @@
             </div>
             <div class="modal-body text-justify">
                 <center>
-                    <img src="assets/img/logo.png" style="width: 40%">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 40%">
                 </center>
                 <hr>
                 <strong>WA Reader</strong> is a simple web-app to view your backed-up WhatsApp chats in a WhatsApp Web user-interface. You upload the ".txt" file of your chat which you can get from the <b>Email Conversation</b> button in your WhatsApp.
@@ -159,12 +159,12 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="upload-popup">
                 <center>
-                    <img src="assets/img/logo.png" style="width: 40%">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 40%">
                 </center>
                 <hr>
                 Upload Whatsapp Text (.txt) file and view chat in a readable format<br>
                 <form enctype="multipart/form-data">
-                    <input type="file" name="file" required>
+                    <input type="file" required>
                     <input type="submit" class="btn btn-success" id="submit_button" value="Get Conversation">
                 </form>
             </div>
@@ -178,8 +178,8 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/jMinEmoji2.min.js"></script>
-<script type="text/javascript" src="assets/js/script.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jMinEmoji2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57220954-4"></script>
