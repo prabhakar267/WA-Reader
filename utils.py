@@ -3,8 +3,8 @@ import os
 
 from dateutil.parser import parse as parse_datetime
 
-TIMESTAMP_SPLITTERS = ["-", "]"]
-REMOVE_CHARACTERS = ["[", "]", "(", ")", "{", "}", '\u200e']
+TIMESTAMP_SPLITTERS = ["-", "]", ": "]
+REMOVE_CHARACTERS = ["[", "]", "(", ")", "{", "}", '\u200e', '\ufeff']
 
 
 def _get_parsed_line(input_line, persons_list):
