@@ -50,25 +50,18 @@ function uploadFiles(event){
                 back_nav.show();
 
                 console.log("Chat Block count:" + response.chat.length);
+                console.log("Users count:" + response.users.length);
                 for(var chat_index in response.chat){
-                    var chat_user_index = response.chat[chat_index].i,
-                        chat_text = response.chat[chat_index].p,
-                        chat_time = response.chat[chat_index].t,
-                        chat_div_id = "chatBox" + chat_index;
-                    var chat_html = '<div class="aloo" id="'+ chat_div_id +'"><div class="text"></div><div class="time"></div></div>';
+                    var chat_div_id = "chatBox" + chat_index,
+                        chat_user_index = response.chat[chat_index].i;
+                    var chat_html = '<div class="aloo" id="'+ chat_div_id +'"><div class="user"></div><div class="text"></div><div class="time"></div></div>';
 
                     chat_div.append(chat_html);
-                    if (chat_user_index == 1) {
+                    if (chat_user_index == 1)
                         $("#" + chat_div_id).addClass("alternate-user");
-                    }
-                    $("div.text", "#" + chat_div_id).text(chat_text);
-                    $("div.time", "#" + chat_div_id).text(chat_time);
-                }
-
-                console.log("Users count:" + response.users.length);
-                for(var user in response.users){
-                    var user_html = '<span id=""><img src="/static/img/default-user-image.png">' + response.users[user] + '</span>';
-                    users_div.append(user_html);
+                    $("div.user", "#" + chat_div_id).text(response.users[chat_user_index]);
+                    $("div.text", "#" + chat_div_id).text(response.chat[chat_index].p);
+                    $("div.time", "#" + chat_div_id).text(response.chat[chat_index].t);
                 }
             } else {
                 show_error_messages(response.errors);

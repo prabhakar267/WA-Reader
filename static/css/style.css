@@ -48,15 +48,23 @@ nav .navbar-nav li a{
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	/*padding: 1px 5px;*/
 	white-space: pre-wrap;
-}
-.aloo .text{
     text-align: justify;
     word-wrap: break-word;
     font-size: 14px;
     padding: 0 7px;
 }
+.aloo .user{
+	font-weight: 900;
+}
+.aloo .time {
+	font-size: 10px;
+	text-align: right;
+	color: #626362;
+	margin-right: 5px;
+	padding: 0;
+}
+
 .alternate-user {
 	background-color: #DCF8C6;
 	margin-left: 20%;
@@ -98,11 +106,4 @@ nav .navbar-nav li a{
 	-moz-border-radius: 999px;
 	border-radius: 999px;
 	margin: 0 10px;
-}
-
-.time {
-	font-size: 10px;
-	text-align: right;
-	color: #626362;
-	margin-right: 5px;
 }
