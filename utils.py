@@ -3,19 +3,38 @@ import os
 
 from dateutil.parser import parse as parse_datetime
 
-def _get_parsed_line(line, persons_list):
-	items = line.split("-")
-	time_string = items[0]
-	line = "-".join(items[1:]).strip()
+TIMESTAMP_SPLITTERS = ["-", "]"]
+REMOVE_CHARACTERS = ["[", "]", "(", ")", "{", "}", '\u200e']
+
+def _get_parsed_line(input_line, persons_list):
+	timestamp_string = None
+	for timestamp_splitter in TIMESTAMP_SPLITTERS:
+		items = input_line.split(timestamp_splitter)
+
+		dirty_timestamp_string = items[0]
+		for remove_character in REMOVE_CHARACTERS:
+			dirty_timestamp_string = dirty_timestamp_string.replace(remove_character, "")
+
+		try:
+			timestamp_string = parse_datetime(dirty_timestamp_string)
+			line = timestamp_splitter.join(items[1:]).strip()
+			break
+		except ValueError:
+			continue
+	
+	if not timestamp_string:
+		raise IndexError
 	items = line.split(":")
 	user_name = items[0]
-
 	if user_name and user_name not in persons_list:
 		persons_list.append(user_name)
 	text_string = ":".join(items[1:]).strip()
 
+	if not text_string:
+		return None, persons_list
+	
 	obj = {
-		"t": parse_datetime(time_string),
+		"t": timestamp_string,
 		"p": text_string,
 		"i": persons_list.index(user_name),
 	} 
@@ -30,8 +49,9 @@ def get_parsed_file(filepath):
 		for line in f:
 			try:
 				parsed_line, persons_list = _get_parsed_line(line.strip(), persons_list)
-				parsed_chats.append(parsed_line)
-			except ValueError:
+				if parsed_line:
+					parsed_chats.append(parsed_line)
+			except IndexError:
 				if len(parsed_chats) == 0:
 					raise Exception("It wasn't a valid text file or we were not able to convert it")
 				else:

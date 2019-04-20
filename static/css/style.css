@@ -42,7 +42,7 @@ nav .navbar-nav li a{
 }
 
 .aloo{
-	background-color: white;
+	background-color: #FFFFFF;
 	margin: 3px;
 	width: 80%;
 	-webkit-border-radius: 5px;
@@ -51,36 +51,14 @@ nav .navbar-nav li a{
 	/*padding: 1px 5px;*/
 	white-space: pre-wrap;
 }
-
-.msg_group_head{
-	background-color: #ccccff;
-	display: inline-block;
-    margin-left: 30%;
-    margin-right: 30%;
-    text-align: justify;
-    word-wrap: break-word;
-    padding-left: 20px
-    font-size: 10px;
-    font-weight: 300;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	padding: 1px 5px;
-}
 .aloo .text{
     text-align: justify;
     word-wrap: break-word;
     font-size: 14px;
     padding: 0 7px;
 }
-
-.person0{
-	background-color: #FFFFFF;
-}
-.person1{
+.alternate-user {
 	background-color: #DCF8C6;
-}
-.left-margin-20{
 	margin-left: 20%;
 }
 
@@ -97,9 +75,11 @@ nav .navbar-nav li a{
     font-size: 12px;
     padding-right: 30px;
     font-weight: 900;
+    background-color: #FFFFFF;
 }
-
-
+#users_list span:nth-child(2){
+	background-color: #DCF8C6;
+}
 #users_list span:first-child{
 	-webkit-border-top-left-radius: 15px;
 	-moz-border-radius-topleft: 15px;
@@ -120,33 +100,9 @@ nav .navbar-nav li a{
 	margin: 0 10px;
 }
 
-.time{
+.time {
 	font-size: 10px;
 	text-align: right;
 	color: #626362;
 	margin-right: 5px;
-}
-
-
-.github-corner:hover .octo-arm {
-    animation: octocat-wave 560ms ease-in-out;
-}
-@keyframes octocat-wave{
-    0%, 100% {
-        transform: rotate(0)
-    }
-    20%, 60% {
-        transform: rotate(-25deg)
-    }
-    40%, 80% {
-        transform: rotate(10deg)
-    }
-}
-@media (max-width: 500px){
-    .github-corner:hover .octo-arm {
-        animation: none
-    }
-    .github-corner .octo-arm {
-        animation: octocat-wave 560ms ease-in-out
-    }
 }

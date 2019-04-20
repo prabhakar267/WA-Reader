@@ -49,28 +49,25 @@ function uploadFiles(event){
                 upload_prompt_div.hide();
                 back_nav.show();
 
-                for(var chat in response.chat){
-                    chat_index = response.chat[chat].i;
-                    chat_line = response.chat[chat].p;
-                    chat_time = response.chat[chat].t;
-
-                    if(chat_line != null){
-                        chat_line.replace(/(?:\r\n|\r|\n)/g, '<br>');   
-                    } else {
-                        chat_line = "*MEDIA HERE*";
-                    }
-
-                    if(chat_index % 2 == 0)
-                        var chat_html = '<div class="aloo person' + chat_index + '"><div class="text">' + chat_line + '</div><div class="time">' + chat_time + '</div></div>';
-                    else
-                        var chat_html = '<div class="aloo person' + chat_index + ' left-margin-20"><div class="text">' + chat_line + '</div><div class="time">' + chat_time + '</div></div>';
+                console.log("Chat Block count:" + response.chat.length);
+                for(var chat_index in response.chat){
+                    var chat_user_index = response.chat[chat_index].i,
+                        chat_text = response.chat[chat_index].p,
+                        chat_time = response.chat[chat_index].t,
+                        chat_div_id = "chatBox" + chat_index;
+                    var chat_html = '<div class="aloo" id="'+ chat_div_id +'"><div class="text"></div><div class="time"></div></div>';
 
                     chat_div.append(chat_html);
+                    if (chat_user_index == 1) {
+                        $("#" + chat_div_id).addClass("alternate-user");
+                    }
+                    $("div.text", "#" + chat_div_id).text(chat_text);
+                    $("div.time", "#" + chat_div_id).text(chat_time);
                 }
 
+                console.log("Users count:" + response.users.length);
                 for(var user in response.users){
-                    var user_image_path = "/static/img/default-user-image.png",
-                        user_html = '<span class="person' + user + '"><img src="'+ user_image_path +'">' + response.users[user] + '</span>';
+                    var user_html = '<span id=""><img src="/static/img/default-user-image.png">' + response.users[user] + '</span>';
                     users_div.append(user_html);
                 }
             } else {
