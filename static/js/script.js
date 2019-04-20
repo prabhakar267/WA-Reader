@@ -51,17 +51,24 @@ function uploadFiles(event){
 
                 console.log("Chat Block count:" + response.chat.length);
                 console.log("Users count:" + response.users.length);
+                var last_user_index = -1;
                 for(var chat_index in response.chat){
                     var chat_div_id = "chatBox" + chat_index,
-                        chat_user_index = response.chat[chat_index].i;
-                    var chat_html = '<div class="aloo" id="'+ chat_div_id +'"><div class="user"></div><div class="text"></div><div class="time"></div></div>';
+                        chat_user_index = response.chat[chat_index].i,
+                        chat_html = '<div class="aloo" id="'+ chat_div_id +'"><div class="user"></div><div class="text"></div><div class="time"></div></div>';
 
                     chat_div.append(chat_html);
                     if (chat_user_index == 1)
                         $("#" + chat_div_id).addClass("alternate-user");
-                    $("div.user", "#" + chat_div_id).text(response.users[chat_user_index]);
+
+                    if (last_user_index != chat_user_index) {
+                        $("div.user", "#" + chat_div_id).text(response.users[chat_user_index]);
+                        $("#" + chat_div_id).addClass("new-user-block");
+                    }
+
                     $("div.text", "#" + chat_div_id).text(response.chat[chat_index].p);
                     $("div.time", "#" + chat_div_id).text(response.chat[chat_index].t);
+                    last_user_index = chat_user_index;
                 }
             } else {
                 show_error_messages(response.errors);

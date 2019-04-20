@@ -1,8 +1,6 @@
-@import url('//fonts.googleapis.com/css?family=Roboto:400,700|Josefin+Sans');
-
 body{
-	background-color: #D9DBD5;
-    font-family: 'Roboto', sans-serif;
+    background-color: #D9DBD5;
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Lucida Grande", Arial, "Ubuntu", "Cantarell", "Fira Sans", sans-serif;
     padding-top: 70px;
 }
 
@@ -14,70 +12,73 @@ nav.navbar{
 }
 
 nav a.navbar-brand{
-	color: white !important;
-	font-weight: 900;
+    color: white !important;
+    font-weight: 900;
 }
 
 nav .navbar-nav li a{
-	color: white !important;
-	font-weight: 900;
-	cursor: pointer;
+    color: white !important;
+    font-weight: 900;
+    cursor: pointer;
 }
 
 .upload-popup{
-	background-color: #fff;
-	box-sizing: border-box;
-	border-radius: 3px;
-	overflow: hidden;
-	padding: 22px 24px 20px;
-	width: 100%;
-	text-align: center;
-	display: table;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 22px 24px 20px;
+    width: 100%;
+    text-align: center;
+    display: table;
 }
 
 .upload-popup input{
-	margin-top: 10px;
-	margin-left: auto;
+    margin-top: 10px;
+    margin-left: auto;
     margin-right: auto;
 }
 
 .aloo{
-	background-color: #FFFFFF;
-	margin: 3px;
-	width: 80%;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	white-space: pre-wrap;
-    text-align: justify;
+    background-color: #FFFFFF;
+    margin: 2px;
+    width: 80%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    white-space: pre-wrap;
     word-wrap: break-word;
     font-size: 14px;
-    padding: 0 7px;
+    padding: 2px 7px 0 7px;
 }
 .aloo .user{
-	font-weight: 900;
+    font-weight: 900;
 }
 .aloo .time {
-	font-size: 10px;
-	text-align: right;
-	color: #626362;
-	margin-right: 5px;
-	padding: 0;
+    font-size: 10px;
+    text-align: right;
+    color: #626362;
+    margin-right: 5px;
+    padding: 0;
+}
+
+.new-user-block {
+    margin-top: 10px;
 }
 
 .alternate-user {
-	background-color: #DCF8C6;
-	margin-left: 20%;
+    background-color: #DCF8C6;
+    margin-left: 20%;
 }
 
 #users_list{
-	background-color: transparent;
-	position: fixed;
-	right: 0;
+    background-color: transparent;
+    position: fixed;
+    right: 0;
 }
 
 #users_list span{
-	display: block;
+    display: block;
     border-bottom: 1px solid black;
     padding: 5px;
     font-size: 12px;
@@ -86,24 +87,24 @@ nav .navbar-nav li a{
     background-color: #FFFFFF;
 }
 #users_list span:nth-child(2){
-	background-color: #DCF8C6;
+    background-color: #DCF8C6;
 }
 #users_list span:first-child{
-	-webkit-border-top-left-radius: 15px;
-	-moz-border-radius-topleft: 15px;
-	border-top-left-radius: 15px;
+    -webkit-border-top-left-radius: 15px;
+    -moz-border-radius-topleft: 15px;
+    border-top-left-radius: 15px;
 }
 #users_list span:last-child{
-	border-bottom: none;
-	-webkit-border-bottom-left-radius: 15px;
-	-moz-border-radius-bottomleft: 15px;
-	border-bottom-left-radius: 15px;
+    border-bottom: none;
+    -webkit-border-bottom-left-radius: 15px;
+    -moz-border-radius-bottomleft: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 #users_list img{
-	width: 40px;
-	-webkit-border-radius: 999px;
-	-moz-border-radius: 999px;
-	border-radius: 999px;
-	margin: 0 10px;
+    width: 40px;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    margin: 0 10px;
 }
