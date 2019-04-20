@@ -25,13 +25,13 @@ def _get_parsed_line(input_line, persons_list):
 	if not timestamp_string:
 		raise IndexError
 	items = line.split(":")
+	text_string = ":".join(items[1:]).strip()
+	if not text_string:
+		return None, persons_list
+
 	user_name = items[0]
 	if user_name and user_name not in persons_list:
 		persons_list.append(user_name)
-	text_string = ":".join(items[1:]).strip()
-
-	if not text_string:
-		return None, persons_list
 	
 	obj = {
 		"t": timestamp_string,
