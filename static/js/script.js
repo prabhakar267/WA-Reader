@@ -1,12 +1,7 @@
-function show_error_messages(errors_array){
-    var errors_div = $('#errors');
-
-    for(var i=0; i<errors_array.length; i++){
-        var message = errors_array[i],
-            error_html = '<div class="alert alert-danger alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>' + message + '</strong></div>';
-        errors_div.html(error_html);
-    }
-    errors_div.removeClass('hidden');
+function show_error_message(error_message){
+    var error_div = $('#error_message_box p');
+    error_div.text(error_message);
+    error_div.removeClass('hidden');
 }
 
 function submitForm (event) {
@@ -18,7 +13,7 @@ function submitForm (event) {
     if (typeof files != 'undefined') {
         uploadFiles(event);
     } else {
-        show_error_messages(['Please upload a file to proceed.']);
+        show_error_message('Please upload a file to proceed.');
     }
 }
 
@@ -71,12 +66,12 @@ function uploadFiles(event){
                     last_user_index = chat_user_index;
                 }
             } else {
-                show_error_messages(response.errors);
+                show_error_message(response.error_message);
             }
         },
         error: function(jqXHR, textStatus, errorThrown){
-            errors = ['Some technical glitch! Please retry after reloading the page!'];
-            show_error_messages(errors);
+            error_message = 'Some technical glitch! Please retry after reloading the page!';
+            show_error_message(error_message);
         }, 
         beforeSend: function(){
             submit_button.val('Getting Conversation...');

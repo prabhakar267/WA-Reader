@@ -24,7 +24,7 @@ def parse_file():
     except Exception as e:
         response = {
             "success": False,
-            "errors": [str(e)]
+            "error_message": str(e)
         }
 
     os.remove(tmp_filepath)
@@ -34,6 +34,12 @@ def parse_file():
 @app.route('/', methods=['GET'])
 def main():
     return render_template("index.html")
+
+
+@app.errorhandler(404)
+def not_found(e):
+    message = "404 We couldn't find the page"
+    return render_template("index.html", error_message=message)
 
 
 if __name__ == "__main__":

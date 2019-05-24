@@ -108,3 +108,7 @@ nav .navbar-nav li a{
     border-radius: 999px;
     margin: 0 10px;
 }
+
+#error_message_box p {
+    font-weight: 900;
+}
