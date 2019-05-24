@@ -43,4 +43,5 @@ def not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", threaded=True)
+    IS_PROD = os.environ.get("IS_PROD", False)
+    app.run(debug=not IS_PROD, host="0.0.0.0", threaded=True)
