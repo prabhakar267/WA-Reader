@@ -2,6 +2,7 @@
 
 # WA Reader
 [![Build Status](https://travis-ci.org/prabhakar267/WA-Reader.svg?branch=master)](https://travis-ci.org/prabhakar267/WA-Reader)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fprabhakar267%2FWA-Reader.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fprabhakar267%2FWA-Reader?ref=badge_shield)
 
 WA Reader is a platform to read WhatsApp conversations from text backups in a easy-to-read UI. Built on `python-flask` server using `dateutil - powerful extension to datetime`.
 
@@ -47,3 +48,7 @@ Open [localhost:5000](http://localhost:5000)
 
 ## Other "WhatsApp" and "WhatsApp Web" Hacks
  + [WhatsApp Emoticons](https://github.com/prabhakar267/whatsapp-emoticons)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fprabhakar267%2FWA-Reader.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fprabhakar267%2FWA-Reader?ref=badge_large)
