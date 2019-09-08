@@ -97,6 +97,7 @@ function restoreForm(event) {
     users_div.empty();
     back_nav.hide();
     upload_prompt_div.show();
+    form_file_field[0].value = "";
 }
 
 
@@ -113,4 +114,5 @@ var files,
     chat_div = conversation_div.find('#chat'),
     users_div = conversation_div.find('#users_list'),
     logo_nav = $('.navbar-brand'),
+    form_file_field = $('#form_file_field'),
     back_nav = $('li.nav-back');
