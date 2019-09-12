@@ -61,7 +61,9 @@
                 It's free and code is open sourced and you can find the source code <a href="https://github.com/prabhakar267/WA-Reader">here</a>.
                 <br><br>
                 <i>Note: WA Reader was built to read a piece of my personal chat, so no guarantees on it working all the time.</i>
+                {% if data['is_prod'] %}
                 <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=RkBmzisnRFwoQ215XCUVqytZXHex3AsAIVzom82iBXI"></script>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -194,7 +196,7 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/jMinEmoji2.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
+{% if data['is_prod'] %}
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57220954-4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -203,6 +205,7 @@
 
   gtag('config', 'UA-57220954-4');
 </script>
+{% endif %}
 
 </body>
 </html>

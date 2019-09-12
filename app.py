@@ -6,6 +6,7 @@ from flask import Flask, request, render_template, jsonify
 from utils import get_parsed_file
 
 app = Flask(__name__)
+IS_PROD = os.environ.get("IS_PROD", False)
 
 
 @app.route('/parse-file', methods=['POST'])
@@ -33,7 +34,10 @@ def parse_file():
 
 @app.route('/', methods=['GET'])
 def main():
-    return render_template("index.html")
+    ctx = {
+        'is_prod': IS_PROD
+    }
+    return render_template("index.html", data=ctx)
 
 
 @app.errorhandler(404)
@@ -43,5 +47,4 @@ def not_found(e):
 
 
 if __name__ == "__main__":
-    IS_PROD = os.environ.get("IS_PROD", False)
     app.run(debug=not IS_PROD, host="0.0.0.0", threaded=True)
