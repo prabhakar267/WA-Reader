@@ -2,6 +2,8 @@
 
 # WA Reader
 [![Build Status](https://travis-ci.org/prabhakar267/WA-Reader.svg?branch=master)](https://travis-ci.org/prabhakar267/WA-Reader)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/prabhakar267/WA-Reader/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 WA Reader is a platform to read WhatsApp conversations from text backups in a easy-to-read UI. Built on `python-flask` server using `dateutil - powerful extension to datetime`.
 
