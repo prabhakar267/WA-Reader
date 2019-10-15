@@ -56,21 +56,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">About <strong>WA Reader</strong></h4>
+                <center><h4 class="modal-title">About <strong>WA Reader</strong></h4></center>
+                
             </div>
             <div class="modal-body text-justify">
-                <center>
-                    <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 40%">
-                </center>
+                    <center><img src="static/img/logo.png" style="width: 20%"></center>
                 <hr>
-                <strong>WA Reader</strong> is a simple web-app to view your backed-up WhatsApp chats in a WhatsApp Web user-interface. You upload the ".txt" file of your chat which you can get from the <b>Email Conversation</b> button in your WhatsApp.
+                <strong>WA Reader</strong> is a simple web-app to view your backed-up WhatsApp chats in a WhatsApp Web user-interface. 
+                <br>
+                You upload the ".txt" file of your chat which you can get from the <b>Email Conversation</b> button in your WhatsApp.
                 <br>
                 It's free and code is open sourced and you can find the source code <a href="https://github.com/prabhakar267/WA-Reader">here</a>.
                 <br><br>
                 <i>Note: WA Reader was built to read a piece of my personal chat, so no guarantees on it working all the time.</i>
-                {% if data['is_prod'] %}
+                <br><br>
+                
                 <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=RkBmzisnRFwoQ215XCUVqytZXHex3AsAIVzom82iBXI"></script>
-                {% endif %}
+                
             </div>
         </div>
     </div>
@@ -97,6 +99,8 @@
                             <div class="panel-body">
                                 It happens since each mobile device and WhatsApp version has it's own way of storing the chats. You can open a <a href="https://github.com/prabhakar267/WA-Reader/issues/new" target="_blank">new issue</a> on the GitHub repository and share a small piece of chat (if possible) so that the viewer can be updated according to the formatting of your device and WhatsApp version.<br>
                                 Do mention your WhatsApp version, mobile OS and device name for better tracking.
+                                <hr>
+                                Read More: <a href="https://faq.whatsapp.com/en/android/23756533/">https://faq.whatsapp.com/en/android/23756533</a>
                             </div>
                         </div>
                     </div>
@@ -145,6 +149,8 @@
                             <div class="panel-body">
                                 <strong>No.</strong> 
                                 <br>Your chat gets deleted as soon as you upload the file. You can feel safe on that front.
+                                <hr>
+                                Read More: <a href="https://faq.whatsapp.com/en/android/23756533/">https://faq.whatsapp.com/en/android/23756533</a>
                             </div>
                         </div>
                     </div>
@@ -160,6 +166,8 @@
                             <div class="panel-body">
                                 <strong>No.</strong> 
                                 <br>Since your chat is getting deleted as soon as you upload the File, you cannot preserve your chat history for you to visit later.
+                                <hr>
+                                Read More: <a href="https://faq.whatsapp.com/en/wp/22548236/">https://faq.whatsapp.com/en/wp/22548236</a>
                             </div>
                         </div>
                     </div>
