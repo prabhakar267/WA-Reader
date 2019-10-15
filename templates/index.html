@@ -9,14 +9,13 @@
     <meta property="og:site_name" content="WA Reader"/>
     <meta property="og:title" content="WA Reader"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="{{ url_for('static', filename='img/logo.png') }}"/>
+    <meta property="og:image" content="{{ url_for('static', filename='img/wa-reader.jpg') }}"/>
     <meta property="og:description" content="Web platform to read WhatsApp conversations from email text backups in a easy-to-read UI."/>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/minEmoji2.css') }}">
     <title>WA Reader | By Prabhakar Gupta</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -60,13 +59,13 @@
             </div>
             <div class="modal-body text-justify">
                 <center>
-                    <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 40%">
+                    <img src="{{ url_for('static', filename='img/wa-reader.jpg') }}" width="55%">
                 </center>
-                <hr>
                 <strong>WA Reader</strong> is a simple web-app to view your backed-up WhatsApp chats in a WhatsApp Web user-interface. You upload the ".txt" file of your chat which you can get from the <b>Email Conversation</b> button in your WhatsApp.
                 <br>
                 It's free and code is open sourced and you can find the source code <a href="https://github.com/prabhakar267/WA-Reader">here</a>.
                 <br><br>
+                Huge shout out to <a href="https://github.com/krzysiekh" target="_blank">@krzysiekh</a> for creating the awesome logo we currently have.<br>
                 <i>Note: WA Reader was built to read a piece of my personal chat, so no guarantees on it working all the time.</i>
                 {% if data['is_prod'] %}
                 <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=RkBmzisnRFwoQ215XCUVqytZXHex3AsAIVzom82iBXI"></script>
@@ -182,7 +181,7 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="upload-popup">
                 <center>
-                    <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 40%">
+                    <img src="{{ url_for('static', filename='img/wa-reader.jpg') }}" width="65%">
                 </center>
                 <hr>
                 Upload Whatsapp Text (.txt) file and view chat in a readable format<br>

@@ -1,4 +1,4 @@
-<p align="center"><img src ="static/img/logo.png" width=300/></p>
+<p align="center"><img src ="static/img/wa-reader.jpg" width=300/></p>
 
 # WA Reader
 [![Build Status](https://travis-ci.org/prabhakar267/WA-Reader.svg?branch=master)](https://travis-ci.org/prabhakar267/WA-Reader)
@@ -46,6 +46,4 @@ Open [localhost:5000](http://localhost:5000)
 
 [![Stargazers over time](https://starchart.cc/prabhakar267/WA-Reader.svg)](https://starchart.cc/prabhakar267/WA-Reader)
 
-
-## Other "WhatsApp" and "WhatsApp Web" Hacks
- + [WhatsApp Emoticons](https://github.com/prabhakar267/whatsapp-emoticons)
+> Huge shout out to [@krzysiekh](https://github.com/krzysiekh) for creating the awesome logo we currently have. 
