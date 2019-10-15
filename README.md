@@ -1,4 +1,4 @@
-<p align="center"><img src ="static/img/logo.png" width=300/></p>
+<p align="center"><img src ="static/img/wa-reader.jpg" width=300/></p>
 
 # WA Reader
 [![Build Status](https://travis-ci.org/prabhakar267/WA-Reader.svg?branch=master)](https://travis-ci.org/prabhakar267/WA-Reader)
