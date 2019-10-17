@@ -1,7 +1,7 @@
 import os
 import uuid
 
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, redirect, url_for
 
 from utils import get_parsed_file
 
@@ -37,13 +37,16 @@ def main():
     ctx = {
         'is_prod': IS_PROD
     }
-    return render_template("index.html", data=ctx)
+    if request.args.get('redirect'):
+        message = "Sorry, we couldn't find the page"
+        return render_template("index.html", data=ctx, error_message=message)
+    else:
+        return render_template("index.html", data=ctx)
 
 
 @app.errorhandler(404)
 def not_found(e):
-    message = "404 We couldn't find the page"
-    return render_template("index.html", error_message=message)
+    return redirect(url_for('main', redirect='home'))
 
 
 if __name__ == "__main__":
