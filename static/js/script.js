@@ -1,6 +1,6 @@
 function show_error_message(error_message){
-    var error_div = $('#error_message_box p');
-    error_div.text(error_message);
+    var error_div = $('#error_message_box');
+    error_div.find('p').text(error_message);
     error_div.removeClass('hidden');
 }
 
