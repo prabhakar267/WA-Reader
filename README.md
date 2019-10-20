@@ -9,7 +9,7 @@ WA Reader is a platform to read WhatsApp conversations from text backups in a ea
 
 ## How to use WA Reader
  + Create a backup text file (`.txt file`)of your chat (if you don't have one already)
- + Generate backup file on: [Android](https://www.whatsapp.com/faq/en/android/23756533) | [iPhone](https://faq.whatsapp.com/en/iphone/20888066) | [Windows Phone](https://faq.whatsapp.com/en/wp/23607796) | [Nokia S40](https://faq.whatsapp.com/en/s40/21055286) | [BlackBerry](https://faq.whatsapp.com/en/bb/23574121) | [BlackBerry 10](https://faq.whatsapp.com/en/bb10/27571777)
+ + Generate backup file on: [Android](https://www.whatsapp.com/faq/en/android/23756533) | [iPhone](https://faq.whatsapp.com/en/iphone/20888066) | [Windows Phone](https://faq.whatsapp.com/en/wp/23607796)
  + Open [WA Reader](https://whatsapp-reader.herokuapp.com/) and follow the instructions
 
 ![](.github/screenshots/screencapture-whatsapp-reader-herokuapp-2019-04-21-20_31_51.png)

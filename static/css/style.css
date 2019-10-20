@@ -112,3 +112,14 @@ nav .navbar-nav li a{
 #error_message_box p {
     font-weight: 900;
 }
+
+.faq-icons {
+    font-size: 30px;
+    margin: 4px;
+}
+.faq-icons a {
+    color: rgb(51, 51, 51);
+}
+.faq-icons a:hover {
+    color: rgb(51, 51, 51);
+}
