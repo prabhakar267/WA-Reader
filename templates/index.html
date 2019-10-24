@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/minEmoji2.css') }}">
     <title>WA Reader | By Prabhakar Gupta</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -24,6 +25,7 @@
         enable_page_level_ads: true
       });
     </script>
+    
 </head>
 
 <body>
@@ -215,16 +217,16 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/jMinEmoji2.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-{% if data['is_prod'] %}
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57220954-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    {% if data['is_prod'] %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57220954-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'UA-57220954-4');
-</script>
-{% endif %}
+        gtag('config', 'UA-57220954-4');
+    </script>
+    {% endif %}
 
 </body>
 </html>
