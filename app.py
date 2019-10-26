@@ -10,7 +10,7 @@ IS_PROD = os.environ.get("IS_PROD", False)
 
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower()=='txt'
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'txt'
 
 
 @app.route('/parse-file', methods=['POST'])
