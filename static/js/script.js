@@ -1,3 +1,5 @@
+var currentFile = {}
+
 function show_error_message(error_message){
     var error_div = $('#error_message_box');
     error_div.find('p').text(error_message);
@@ -19,6 +21,18 @@ function submitForm (event) {
 
 function prepareUpload(event){
     files = event.target.files;
+}
+
+function download() {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentFile));
+    var dlAnchorElem = document.createElement('a')
+    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("download", "chat.json");
+    dlAnchorElem.click();
+}
+
+function setFile (json) {
+    currentFile = json;
 }
 
 function uploadFiles(event){
@@ -43,6 +57,8 @@ function uploadFiles(event){
             if(response.success){
                 upload_prompt_div.hide();
                 back_nav.show();
+                setFile({'chat': response.chat, 'users': response.users})
+                download_link.show();
 
                 console.log("Chat Block count:" + response.chat.length);
                 console.log("Users count:" + response.users.length);
@@ -92,10 +108,10 @@ function uploadFiles(event){
 
 function restoreForm(event) {
     event.preventDefault();
-    
     chat_div.empty();
     users_div.empty();
     back_nav.hide();
+    download_link.hide()
     upload_prompt_div.show();
     form_file_field[0].value = "";
 }
@@ -103,6 +119,7 @@ function restoreForm(event) {
 
 $(document).ready(function(){    
     $('form').on('submit', submitForm);
+    download_link.children('a').on('click', download);
     $('input[type=file]').on('change', prepareUpload);
     $('.nav-back').click(restoreForm);
 })
@@ -116,3 +133,4 @@ var files,
     logo_nav = $('.navbar-brand'),
     form_file_field = $('#form_file_field'),
     back_nav = $('li.nav-back');
+    download_link = $('li.download-link');
