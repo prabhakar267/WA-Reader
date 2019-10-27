@@ -10,7 +10,8 @@ IS_PROD = os.environ.get("IS_PROD", False)
 
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'txt'
+    allowed_filetypes = ['txt', 'json']
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_filetypes
 
 
 @app.route('/parse-file', methods=['POST'])
@@ -22,8 +23,9 @@ def parse_file():
             "error_message": "Please upload a valid file!",
         }
     else:
+        filename, file_extension = os.path.splitext(file.filename)
         filename = str(uuid.uuid4())
-        tmp_filepath = os.path.join("conversations", filename)
+        tmp_filepath = os.path.join("conversations", filename + file_extension)
         file.save(tmp_filepath)
         try:
             parsed_items, persons_list = get_parsed_file(tmp_filepath)
