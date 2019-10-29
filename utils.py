@@ -1,5 +1,6 @@
 import io
 import os
+import json
 
 from dateutil.parser import parse as parse_datetime
 
@@ -43,6 +44,17 @@ def _get_parsed_line(input_line, persons_list):
 def get_parsed_file(filepath):
     if not os.path.exists(filepath):
         raise Exception("File not uploaded properly. Try Again!")
+    filename, file_extension = os.path.splitext(filepath)
+    if file_extension == '.json':
+        with open(filepath, 'r') as f:
+            try:
+                chat_archive = json.load(f)
+            except Exception:
+                raise Exception("It wasn't a valid text file or we were not able to convert it")
+            if 'users' in chat_archive and 'chat' in chat_archive:
+                return chat_archive['chat'], chat_archive['users']
+            else:
+                raise Exception("It wasn't a valid text file or we were not able to convert it")
     parsed_chats = []
     persons_list = []
     with io.open(filepath, "r", encoding='utf-8') as f:
