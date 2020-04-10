@@ -1,45 +1,40 @@
-body{
+body {
     background-color: #D9DBD5;
     font-family: "Segoe UI", "Helvetica Neue", "Helvetica", "Lucida Grande", Arial, "Ubuntu", "Cantarell", "Fira Sans", sans-serif;
-    padding-top: 70px;
 }
 
-nav.navbar{
+nav.navbar {
     background-color: #009688;
     border: none;
     box-shadow: 0 0 10px #000;
     color: white;
 }
 
-nav a.navbar-brand{
+nav a.navbar-brand {
     color: white !important;
     font-weight: 900;
 }
 
-nav .navbar-nav li a{
+nav .navbar-nav li a {
     color: white !important;
-    font-weight: 900;
     cursor: pointer;
 }
 
-.upload-popup{
-    background-color: #fff;
-    box-sizing: border-box;
-    border-radius: 3px;
-    overflow: hidden;
-    padding: 22px 24px 20px;
-    width: 100%;
-    text-align: center;
-    display: table;
+.welcome-header {
+    margin-top: 1%;
 }
 
-.upload-popup input{
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+.welcome-header .card {
+    margin: auto;
 }
 
-.aloo{
+.welcome-header img {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.aloo {
     background-color: #FFFFFF;
     margin: 2px;
     width: 80%;
@@ -51,9 +46,11 @@ nav .navbar-nav li a{
     font-size: 14px;
     padding: 2px 7px 0 7px;
 }
-.aloo .user{
+
+.aloo .user {
     font-weight: 900;
 }
+
 .aloo .time {
     font-size: 10px;
     text-align: right;
@@ -71,13 +68,13 @@ nav .navbar-nav li a{
     margin-left: 20%;
 }
 
-#users_list{
+#users_list {
     background-color: transparent;
     position: fixed;
     right: 0;
 }
 
-#users_list span{
+#users_list span {
     display: block;
     border-bottom: 1px solid black;
     padding: 5px;
@@ -86,22 +83,25 @@ nav .navbar-nav li a{
     font-weight: 900;
     background-color: #FFFFFF;
 }
-#users_list span:nth-child(2){
+
+#users_list span:nth-child(2) {
     background-color: #DCF8C6;
 }
-#users_list span:first-child{
+
+#users_list span:first-child {
     -webkit-border-top-left-radius: 15px;
     -moz-border-radius-topleft: 15px;
     border-top-left-radius: 15px;
 }
-#users_list span:last-child{
+
+#users_list span:last-child {
     border-bottom: none;
     -webkit-border-bottom-left-radius: 15px;
     -moz-border-radius-bottomleft: 15px;
     border-bottom-left-radius: 15px;
 }
 
-#users_list img{
+#users_list img {
     width: 40px;
     -webkit-border-radius: 999px;
     -moz-border-radius: 999px;
@@ -109,17 +109,16 @@ nav .navbar-nav li a{
     margin: 0 10px;
 }
 
-#error_message_box p {
-    font-weight: 900;
-}
 
 .faq-icons {
     font-size: 30px;
     margin: 4px;
 }
+
 .faq-icons a {
     color: rgb(51, 51, 51);
 }
+
 .faq-icons a:hover {
     color: rgb(51, 51, 51);
 }

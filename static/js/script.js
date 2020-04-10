@@ -1,17 +1,17 @@
 var currentFile = {}
 
-function show_error_message(error_message){
+function show_error_message(error_message) {
     var error_div = $('#error_message_box');
     error_div.find('p').text(error_message);
     error_div.removeClass('hidden');
 }
 
-function submitForm (event) {
+function submitForm(event) {
     event.stopPropagation();
     event.preventDefault();
 
     $('#errors').html('');
-    
+
     if (typeof files != 'undefined') {
         uploadFiles(event);
     } else {
@@ -19,28 +19,28 @@ function submitForm (event) {
     }
 }
 
-function prepareUpload(event){
+function prepareUpload(event) {
     files = event.target.files;
 }
 
 function download() {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentFile));
     var dlAnchorElem = document.createElement('a')
-    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "chat.json");
     dlAnchorElem.click();
 }
 
-function setFile (json) {
+function setFile(json) {
     currentFile = json;
 }
 
-function uploadFiles(event){
+function uploadFiles(event) {
     var data = new FormData(),
         submit_button = $('#submit_button')
-        file_input = submit_button.parent('form').children('input[name="file"]');
+    file_input = submit_button.parent('form').children('input[name="file"]');
 
-    $.each(files, function(key, value){
+    $.each(files, function(key, value) {
         data.append(key, value);
     });
 
@@ -52,21 +52,21 @@ function uploadFiles(event){
         dataType: 'json',
         processData: false,
         contentType: false,
-        
-        success: function(response){
-            if(response.success){
-                upload_prompt_div.hide();
+
+        success: function(response) {
+            if (response.success) {
+                intro_panels.hide();
                 back_nav.show();
-                setFile({'chat': response.chat, 'users': response.users})
+                setFile({ 'chat': response.chat, 'users': response.users })
                 download_link.show();
 
                 console.log("Chat Block count:" + response.chat.length);
                 console.log("Users count:" + response.users.length);
                 var last_user_index = -1;
-                for(var chat_index in response.chat){
+                for (var chat_index in response.chat) {
                     var chat_div_id = "chatBox" + chat_index,
                         chat_user_index = response.chat[chat_index].i,
-                        chat_html = '<div class="aloo" id="'+ chat_div_id +'"><div class="user"></div><div class="text"></div><div class="time"></div></div>';
+                        chat_html = '<div class="aloo" id="' + chat_div_id + '"><div class="user"></div><div class="text"></div><div class="time"></div></div>';
 
                     chat_div.append(chat_html);
                     if (chat_user_index == 1)
@@ -85,17 +85,17 @@ function uploadFiles(event){
                 show_error_message(response.error_message);
             }
         },
-        error: function(jqXHR, textStatus, errorThrown){
+        error: function(jqXHR, textStatus, errorThrown) {
             error_message = 'Some technical glitch! Please retry after reloading the page!';
             show_error_message(error_message);
-        }, 
-        beforeSend: function(){
-            submit_button.val('Getting Conversation...');
+        },
+        beforeSend: function() {
+            submit_button.val('Processing...');
             submit_button.attr('disabled', '');
 
             file_input.attr('disabled', '');
         },
-        complete: function(){
+        complete: function() {
             submit_button.val('Get Conversation');
             submit_button.removeAttr('disabled');
 
@@ -112,12 +112,12 @@ function restoreForm(event) {
     users_div.empty();
     back_nav.hide();
     download_link.hide()
-    upload_prompt_div.show();
+    intro_panels.show();
     form_file_field[0].value = "";
 }
 
 
-$(document).ready(function(){    
+$(document).ready(function() {
     $('form').on('submit', submitForm);
     download_link.children('a').on('click', download);
     $('input[type=file]').on('change', prepareUpload);
@@ -126,11 +126,10 @@ $(document).ready(function(){
 
 
 var files,
-    upload_prompt_div = $('#upload-prompt'),
+    intro_panels = $('.intro-panels'),
     conversation_div = $('#whatsapp-conversation'),
     chat_div = conversation_div.find('#chat'),
     users_div = conversation_div.find('#users_list'),
-    logo_nav = $('.navbar-brand'),
     form_file_field = $('#form_file_field'),
-    back_nav = $('li.nav-back');
+    back_nav = $('li.nav-back'),
     download_link = $('li.download-link');

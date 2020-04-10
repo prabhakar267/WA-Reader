@@ -1,25 +1,24 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Prabhakar Gupta">
-
-    <meta property="og:site_name" content="WA Reader"/>
-    <meta property="og:title" content="WA Reader"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content="{{ url_for('static', filename='img/wa-reader.jpg') }}"/>
-    <meta property="og:description" content="Web platform to read WhatsApp conversations from email text backups in a easy-to-read UI."/>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta property="og:site_name" content="WA Reader" />
+    <meta property="og:title" content="WA Reader" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{ url_for('static', filename='img/wa-reader.jpg') }}" />
+    <meta property="og:description" content="Web platform to read WhatsApp conversations from email text backups in a easy-to-read UI." />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/minEmoji2.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <title>WA Reader | By Prabhakar Gupta</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
+        (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-1799032661457310",
         enable_page_level_ads: true
       });
@@ -27,124 +26,104 @@
 </head>
 
 <body>
-<nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand nav-back" href="/"> <strong>WA Reader</strong> </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-left">
-                <li class="nav-back" style="display:none;"><a><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> View another chat</a></li>
-                <li><a data-toggle="modal" data-target="#aboutmodal">About</a></li>
-                <li><a data-toggle="modal" data-target="#instructionsmodal">FAQs</a></li>
-                <li><a href="https://github.com/prabhakar267/WA-Reader/issues" target="_blank">Report an issue</a></li>
-                <li><a href="https://github.com/prabhakar267/WA-Reader" target="_blank">Contribute</a></li>
-                <li class="download-link" style="display: none;"><a href="#">Download</a></li>
+    <nav class="navbar navbar-expand-lg navbar-inverse">
+        <a class="navbar-brand nav-back" href="/"> <strong>WA Reader</strong> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item nav-back" style="display:none;"><a class="nav-link"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> View another chat</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#aboutmodal">About</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#instructionsmodal">FAQs</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/prabhakar267/WA-Reader/issues" target="_blank">Report an issue</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/prabhakar267/WA-Reader" target="_blank">Contribute</a></li>
+                <li class="download-link nav-item" style="display: none;"><a class="nav-link">Download</a></li>
             </ul>
         </div>
-    </div>
-</nav>
-
-<div class="modal fade" id="aboutmodal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">About <strong>WA Reader</strong></h4>
-            </div>
-            <div class="modal-body text-justify">
-                <center>
-                    <img src="{{ url_for('static', filename='img/wa-reader.jpg') }}" width="55%">
-                </center>
-                <strong>WA Reader</strong> is a simple web-app to view your backed-up WhatsApp chats in a WhatsApp Web user-interface. You upload the ".txt" file of your chat which you can get from the <b>Email Conversation</b> button in your WhatsApp.
-                <br>
-                It's free and code is open sourced and you can find the source code <a href="https://github.com/prabhakar267/WA-Reader">here</a>.
-                <br><br>
-                Huge shout out to <a href="https://github.com/krzysiekh" target="_blank">@krzysiekh</a> for creating the awesome logo we currently have.<br>
-                <i>Note: WA Reader was built to read a piece of my personal chat, so no guarantees on it working all the time.</i>
-                {% if data['is_prod'] %}
-                <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=RkBmzisnRFwoQ215XCUVqytZXHex3AsAIVzom82iBXI"></script>
-                {% endif %}
+    </nav>
+    <div class="modal fade" id="aboutmodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">About <strong>WA Reader</strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <img src="{{ url_for('static', filename='img/wa-reader.jpg') }}" width="55%">
+                    </center>
+                    <hr>
+                    <strong>WA Reader</strong> is a simple web-app to view your backed-up WhatsApp chats in a WhatsApp Web user-interface. You upload the ".txt" file of your chat which
+                    you can get from the <b>Email Conversation</b> button in your WhatsApp.
+                    <br>
+                    It's free and code is open sourced and you can find the source code <a href="https://github.com/prabhakar267/WA-Reader">here</a>.
+                    <br><br>
+                    Huge shout out to <a href="https://github.com/krzysiekh" target="_blank">@krzysiekh</a> for creating the awesome logo we currently have.<br>
+                    <i>Note: WA Reader was built to read a piece of my personal chat, so no guarantees on it working all the time.</i>
+                    {% if data['is_prod'] %}
+                    <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=RkBmzisnRFwoQ215XCUVqytZXHex3AsAIVzom82iBXI"></script>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade" id="instructionsmodal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><strong>Frequently Asked Questions</strong></h4>
-            </div>
-            <div class="modal-body text-justify">
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingFive">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    I keep getting <i>"It wasn't a valid text file or we were not able to convert it"</i>, even though I am uploading a file?
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                            <div class="panel-body">
-                                It happens since each mobile device and WhatsApp version has it's own way of storing the chats. You can open a <a href="https://github.com/prabhakar267/WA-Reader/issues/new" target="_blank">new issue</a> on the GitHub repository and share a small piece of chat (if possible) so that the viewer can be updated according to the formatting of your device and WhatsApp version.<br>
-                                Do mention your WhatsApp version, mobile OS and device name for better tracking.
+    <div class="modal fade" id="instructionsmodal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Frequently Asked Questions</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-justify">
+                    <div id="accordion" role="tablist" aria-multiselectable="false">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingFive" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                I keep getting <i>"It wasn't a valid text file or we were not able to convert it"</i>, even though I am uploading a file?
+                            </div>
+                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                <div class="card-body">
+                                    It happens since each mobile device and WhatsApp version has it's own way of storing the chats. You can open a <a href="https://github.com/prabhakar267/WA-Reader/issues/new" target="_blank">new issue</a> on the GitHub repository and share a small piece of chat (if possible) so that the viewer can be updated according to the formatting of your device and WhatsApp version.<br>Do mention your WhatsApp version, mobile OS and device name for better tracking.
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingTwo">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    How do I back up my chat history from WhatsApp?
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="panel-body">
-                                Your WhatsApp messages are automatically backed up and saved daily to your phone's memory. If you uninstall WhatsApp from your phone, but don't want to lose any of your messages, be sure to manually back up or export your chats before uninstalling. Read more about how to back up your chat on each OS on WhatsApp FAQ:<br>
-                                <span class="faq-icons"><a href="https://faq.whatsapp.com/en/iphone/20888066" target="_blank"><i class="fab fa-apple"></i></a></span>
-                                <span class="faq-icons"><a href="https://faq.whatsapp.com/en/android/23756533" target="_blank"><i class="fab fa-android"></i></a></span>
-                                <span class="faq-icons"><a href="https://faq.whatsapp.com/en/wp/23607796" target="_blank"><i class="fab fa-windows"></i></a></span>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How do I back up my chat history from WhatsApp?
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="card-body">
+                                    Your WhatsApp messages are automatically backed up and saved daily to your phone's memory. If you uninstall WhatsApp from your phone, but don't want to lose any of your messages, be sure to manually back up or export your chats before uninstalling. Read more about how to back up your chat on each OS on WhatsApp FAQ:<br>
+                                    <span class="faq-icons"><a href="https://faq.whatsapp.com/en/iphone/20888066" target="_blank"><i class="fab fa-apple"></i></a></span>
+                                    <span class="faq-icons"><a href="https://faq.whatsapp.com/en/android/23756533" target="_blank"><i class="fab fa-android"></i></a></span>
+                                    <span class="faq-icons"><a href="https://faq.whatsapp.com/en/wp/23607796" target="_blank"><i class="fab fa-windows"></i></a></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Is my chat getting saved?
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                            <div class="panel-body">
-                                <strong>No.</strong> 
-                                <br>Your chat gets deleted as soon as you upload the file. You can feel safe on that front.
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Is my chat getting saved?
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="card-body">
+                                    <strong>No.</strong>
+                                    <br>Your chat gets deleted as soon as you upload the file. You can feel safe on that front.
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingFour">
-                            <h4 class="panel-title">
-                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    Can I preview my chat if I have uploaded it once?
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                            <div class="panel-body">
-                                <strong>No.</strong> 
-                                <br>Since your chat is getting deleted as soon as you upload the File, you cannot preserve your chat history for you to visit later.
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingFour" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Can I preview my chat if I have uploaded it once?
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="card-body">
+                                    <strong>No.</strong>
+                                    <br>Since your chat is getting deleted as soon as you upload the File, you cannot preserve your chat history for you to visit later.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -152,64 +131,98 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="container">
-    <div id="error_message_box" class="{% if error_message is not defined %} hidden {% endif %}">
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            <p>{{ error_message }}</p>
+    <div class="container intro-panels">
+        <div class="row welcome-header">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ url_for('static', filename='img/wa-reader.jpg') }}">
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row" id="upload-prompt">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="upload-popup">
-                <center>
-                    <img src="{{ url_for('static', filename='img/wa-reader.jpg') }}" width="65%">
-                </center>
+        <hr>
+        <div id="error_message_box" style="{% if error_message is not defined %} display:none {% endif %}">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <p>{{ error_message }}</p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="alert alert-success" role="alert">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <center>
+                            <h4>
+                                Welcome to <strong>WA Reader</strong>
+                            </h4>
+                        </center>
+                    </div>
+                </div>
                 <hr>
-                Upload Whatsapp Text (.txt) or downloaded WA-reader file (.json) and view chat in a readable format<br>
-                <form enctype="multipart/form-data">
-                    <input type="file" id="form_file_field" required>
-                    <input type="submit" class="btn btn-success" id="submit_button" value="Get Conversation">
-                </form>
-
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- website_main -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-1799032661457310"
-                     data-ad-slot="4162921987"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                <div class="row">
+                    <div class="col-md-6">
+                        WA Reader allows you to view your backed-up WhatsApp chats in a WhatsApp Web user-interface.<br>
+                        <hr>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-dollar-sign"></i></span>Free to use</li>
+                            <li><span class="fa-li"><i class="fas fa-user-secret"></i></span>Safe and respects privacy</li>
+                            <li><span class="fa-li"><i class="fas fas fa-laptop-code"></i></span>Code is open source</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="upload-popup">
+                            Upload WhatsApp Text <code>.txt</code> or downloaded WA-reader file <code>.json</code> which you can get from the Email Conversation button in your
+                            WhatsApp<br>
+                            <hr>
+                            <form enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="form_file_field">
+                                        <label class="custom-file-label">Choose <code>.txt</code> or <code>.json</code> file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <center>
+                                        <input type="submit" class="btn btn-success" id="submit_button" value="Get Conversation">
+                                    </center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row" id="whatsapp-conversation">
-        <div class="col-md-12" id="chat"></div>
+    <div class="row intro-panels">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- website_main -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1799032661457310" data-ad-slot="4162921987" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
-</div>
+    <div class="container">
+        <div class="row" id="whatsapp-conversation">
+            <div class="col-md-12" id="chat"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jMinEmoji2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% if data['is_prod'] %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57220954-4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/jMinEmoji2.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-{% if data['is_prod'] %}
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57220954-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-57220954-4');
-</script>
-{% endif %}
-
+    gtag('config', 'UA-57220954-4');
+    </script>
+    {% endif %}
 </body>
+
 </html>
