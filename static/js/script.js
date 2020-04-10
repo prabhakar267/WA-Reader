@@ -1,17 +1,14 @@
 var currentFile = {}
 
 function show_error_message(error_message) {
-    var error_div = $('#error_message_box');
-    error_div.find('p').text(error_message);
-    error_div.removeClass('hidden');
+    error_div.html(error_message);
+    error_div.show();
+    error_div.fadeTo(5000, 500).slideUp(500);
 }
 
 function submitForm(event) {
     event.stopPropagation();
     event.preventDefault();
-
-    $('#errors').html('');
-
     if (typeof files != 'undefined') {
         uploadFiles(event);
     } else {
@@ -131,5 +128,6 @@ var files,
     chat_div = conversation_div.find('#chat'),
     users_div = conversation_div.find('#users_list'),
     form_file_field = $('#form_file_field'),
+    error_div = $('#error_message_box'),
     back_nav = $('li.nav-back'),
     download_link = $('li.download-link');
