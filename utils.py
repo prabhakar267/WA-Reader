@@ -1,6 +1,5 @@
-import io
-import os
 import json
+import os
 
 from dateutil.parser import parse as parse_datetime
 
@@ -57,7 +56,7 @@ def get_parsed_file(filepath):
                 raise Exception("It wasn't a valid text file or we were not able to convert it")
     parsed_chats = []
     persons_list = []
-    with io.open(filepath, "r", encoding='utf-8') as f:
+    with open(filepath, "r", encoding='utf-8') as f:
         for line in f:
             try:
                 parsed_line, persons_list = _get_parsed_line(line.strip(), persons_list)
@@ -67,6 +66,6 @@ def get_parsed_file(filepath):
                 if len(parsed_chats) == 0:
                     raise Exception("It wasn't a valid text file or we were not able to convert it")
                 else:
-                    # continution message from last message
+                    # continuation message from last message
                     parsed_chats[-1]["p"] += "\n{}".format(line.strip())
     return parsed_chats, persons_list
