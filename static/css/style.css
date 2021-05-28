@@ -59,6 +59,42 @@ nav .navbar-nav li a {
     padding: 0;
 }
 
+video {
+    height:100%;
+    width: 100%;
+}
+.video_holder {
+    width:150px;
+    height: auto
+}
+audio {
+    height:100%;
+    width: 100%;
+}
+.audio_holder {
+    width:150px;
+    height: auto
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.image_holder {
+    width:150px;
+    height: auto
+}
+
+.image_holder:hover {
+  color: #424242; 
+  -webkit-transition: all 0.35s ease-in-out;    
+  -moz-transition: all 0.35s ease-in-out;    
+  transition: all 0.35s ease-in-out;  
+  opacity: 1;
+  transform: scale(4);
+}
+
 .new-user-block {
     margin-top: 10px;
 }
