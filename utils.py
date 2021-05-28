@@ -20,7 +20,7 @@ def _get_parsed_line(input_line, persons_list):
             timestamp_string = parse_datetime(dirty_timestamp_string, dayfirst=True)
             line = timestamp_splitter.join(items[1:]).strip()
             break
-        except ValueError:
+        except (ValueError, OverflowError):
             continue
     if not timestamp_string:
         raise IndexError
