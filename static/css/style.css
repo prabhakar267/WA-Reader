@@ -122,3 +122,7 @@ nav .navbar-nav li a {
 .faq-icons a:hover {
     color: rgb(51, 51, 51);
 }
+
+#accordion .card .card-header {
+    cursor: pointer;
+}
