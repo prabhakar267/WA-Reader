@@ -16,6 +16,7 @@ WA Reader is a platform to read WhatsApp conversations from text backups in a ea
 
 
 ## Contribute
++ You can find the setup instructions [here](SETUP.md)
 + For reporting bug about an incorrect file not being processed, open a [new issue](https://github.com/prabhakar267/WA-Reader/issues).
 + PRs are always welcome to improve WA-Reader.
 

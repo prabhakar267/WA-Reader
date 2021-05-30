@@ -14,7 +14,11 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/minEmoji2.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}"/>
+
     <title>WA Reader | By Prabhakar Gupta</title>
+
+    <script data-ad-client="ca-pub-1799032661457310" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 <nav class="navbar sticky-top navbar-expand-lg navbar-inverse">
@@ -75,8 +79,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <p class="font-weight-light text-center">
-                        The ads on the website helps us covering the hosting costs.<br>
-                        If WA-Reader helped you read chats of someone special, do consider helping out the developers by <a href="{{ data['contribution_link'] }}" target="_blank" class="text-decoration-none">contributing here</a>.
+                        Ads on the website helps in covering the hosting costs.<br>
+                        If WA-Reader helped you read chats of someone special, consider helping out the developers by <a href="{{ data['contribution_link'] }}" target="_blank" class="text-decoration-none">contributing here</a>.
                     </p>
                 </div>
             </div>
@@ -171,7 +175,6 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-njuUD4Ih7Yw
 <script type="text/javascript" src="{{ url_for('static', filename='js/jMinEmoji2.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% if data['is_prod'] %}
@@ -181,13 +184,11 @@ njuUD4Ih7Yw
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'UA-57220954-4');
-
 </script>
 {% endif %}
 {% if error_message is defined %}
 <script>
 show_error_message("{{ error_message }}");
-
 </script>
 {% endif %}
 </body>
