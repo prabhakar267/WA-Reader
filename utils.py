@@ -3,6 +3,8 @@ import os
 
 from dateutil.parser import parse as parse_datetime
 
+from constants import DEFAULT_ERROR_MESSAGE
+
 TIMESTAMP_SPLITTERS = ["-", "]", ": "]
 REMOVE_CHARACTERS = ["[", "]", "(", ")", "{", "}", '\u200e', '\ufeff']
 
@@ -49,11 +51,11 @@ def get_parsed_file(filepath):
             try:
                 chat_archive = json.load(f)
             except Exception:
-                raise Exception("It wasn't a valid text file or we were not able to convert it")
+                raise Exception(DEFAULT_ERROR_MESSAGE)
             if 'users' in chat_archive and 'chat' in chat_archive:
                 return chat_archive['chat'], chat_archive['users']
             else:
-                raise Exception("It wasn't a valid text file or we were not able to convert it")
+                raise Exception(DEFAULT_ERROR_MESSAGE)
     parsed_chats = []
     persons_list = []
     with open(filepath, "r", encoding='utf-8') as f:
@@ -64,7 +66,7 @@ def get_parsed_file(filepath):
                     parsed_chats.append(parsed_line)
             except IndexError:
                 if len(parsed_chats) == 0:
-                    raise Exception("It wasn't a valid text file or we were not able to convert it")
+                    raise Exception(DEFAULT_ERROR_MESSAGE)
                 else:
                     # continuation message from last message
                     parsed_chats[-1]["p"] += "\n{}".format(line.strip())

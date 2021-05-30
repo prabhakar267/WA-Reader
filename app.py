@@ -3,6 +3,7 @@ import uuid
 
 from flask import Flask, request, render_template, jsonify, redirect, url_for
 
+from constants import CONTRIBUTION_LINK, DEFAULT_ERROR_MESSAGE
 from utils import get_parsed_file
 
 app = Flask(__name__)
@@ -47,7 +48,9 @@ def parse_file():
 @app.route('/', methods=['GET'])
 def main():
     ctx = {
-        'is_prod': IS_PROD
+        'is_prod': IS_PROD,
+        'contribution_link': CONTRIBUTION_LINK,
+        'default_error_message': DEFAULT_ERROR_MESSAGE,
     }
     if request.args.get('redirect'):
         message = "Sorry, we couldn't find the page"
