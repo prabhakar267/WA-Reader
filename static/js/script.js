@@ -1,4 +1,7 @@
-var currentFile = {}
+var currentFile = {},
+    file_extensions_img = ['jpg', 'png'],
+    file_extensions_audio = ['opus'],
+    file_extensions_video = ['mp4'];
 
 function show_error_message(error_message) {
     error_div.html(error_message);
@@ -31,14 +34,9 @@ function download() {
 function setFile(json) {
     currentFile = json;
 }
+
 function file_type_checker(_filename, _extensions){
-    if (_extensions.some(v => _filename.includes(v))) {
-        //console.log("Match using '" + _filename + "'");
-        return true
-    } else {
-        //console.log("No match using '" + _filename + "'");
-        return false
-    }
+    return _extensions.some(v => _filename.includes(v))
 }
 
 function uploadFiles(event) {
@@ -68,7 +66,8 @@ function uploadFiles(event) {
 
                 console.log("Chat Block count:" + response.chat.length);
                 console.log("Users count:" + response.users.length);
-                console.log("Attachments:" + response.attachments);
+                console.log("Are attachments present:" + response.attachments);
+
                 var last_user_index = -1;
                 for (var chat_index in response.chat) {
                     var chat_div_id = "chatBox" + chat_index,
@@ -83,49 +82,30 @@ function uploadFiles(event) {
                         $("div.user", "#" + chat_div_id).text(response.users[chat_user_index]);
                         $("#" + chat_div_id).addClass("new-user-block");
                     }
-                    if (response.attachments == true){
-                        temp_str= response.chat[chat_index].p
-                        //Sample formats seen
-                        // 28.05.21, 22:21 - xxxx: ‎IMG-20210528-WA0007.jpg (Datei angehängt)
-                        // ‎[04.08.19, 17:56:01] yyyy zzzz: ‎<Anhang: 00000016-PHOTO-2019-08-04-17-56-01.jpg>
-                        if (temp_str.search("<(.*):.([0-9]{8})-(.*)-([0-9]{4})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})-([0-9]{2})(.*)>") > -1 || temp_str.search("-([0-9]{8})-(WA.*)\.(.*)\((.*)\)") > -1){
-                            filename_match = ''
-                            try{
-                                filename_match = temp_str.match(/([\w\d\-.]+\.[\w\d]{3,4})/)[1];
-                            }
-                            catch(err) {
-                                console.log("Filename extract failed")
-                              }
-                            var file_extensions_img = ['.jpg', '.png'];
-                            var file_extensions_audio = ['.opus'];
-                            var file_extensions_video = ['.mp4'];
 
-                            if (file_type_checker(filename_match, file_extensions_video) == true){
-                                //console.log("video mp4")
-                                $("div.video_holder", "#" + chat_div_id).html("<video controls><source src='/static/chat/" + filename_match +"' type='video/mp4'>Your browser does not support the video tag.</video>")
-                            } 
-                            else if (file_type_checker(filename_match, file_extensions_audio) == true){
-                                //console.log("audio opus")
-                                $("div.audio_holder", "#" + chat_div_id).html("<audio controls><source src='/static/chat/" + filename_match +"' type='audio/aac'>Your browser does not support the audio tag.</audio>")
-                            } 
-                            else if (file_type_checker(filename_match, file_extensions_img) == true){
-                                //console.log("image")
-                                $("div.image_holder", "#" + chat_div_id).html("<img src='/static/chat/" + filename_match +"' />")
-                            }                         
-                            else {        
-                                console.log("unknown attachment")
-                                $("div.text", "#" + chat_div_id).text("This attachemnt I can't handle yet:" +filename_match );
+                    if (response.attachments == true){
+                        temp_str = response.chat[chat_index].p
+                        if (response.chat[chat_index].m){
+                            file_path = response.chat[chat_index].mp
+                            file_extension = file_path.split('.').pop();
+
+                            if (file_type_checker(file_extension, file_extensions_video) == true) {
+                                $("div.video_holder", "#" + chat_div_id).html("<video controls><source src='" + file_path +"' type='video/mp4'>Your browser does not support the video tag.</video>")
+                            } else if (file_type_checker(file_extension, file_extensions_audio) == true) {
+                                $("div.audio_holder", "#" + chat_div_id).html("<audio controls><source src='" + file_path +"' type='audio/aac'>Your browser does not support the audio tag.</audio>")
+                            } else if (file_type_checker(file_extension, file_extensions_img) == true) {
+                                $("div.image_holder", "#" + chat_div_id).html("<img src='" + file_path +"' />")
+                            } else {
+                                console.log("Unknown attachment type " + file_extension)
+                                $("div.text", "#" + chat_div_id).text("Unable to handle this attachment yet");
                             }
                         } else {
-                            //console.log("text base")
                             $("div.text", "#" + chat_div_id).text(response.chat[chat_index].p);
                         }
                     } else {
-                        //console.log("text")
                         $("div.text", "#" + chat_div_id).text(response.chat[chat_index].p);
                     }
-                    
-                    
+
                     $("div.time", "#" + chat_div_id).text(response.chat[chat_index].t);
                     last_user_index = chat_user_index;
                 }

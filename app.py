@@ -1,13 +1,11 @@
 import os
 import uuid
+import zipfile
 
 from flask import Flask, request, render_template, jsonify, redirect, url_for
 
 from constants import CONTRIBUTION_LINK, DEFAULT_ERROR_MESSAGE
-from utils import get_parsed_file
-
-import zipfile
-import glob
+from utils import get_parsed_file, empty_directory
 
 app = Flask(__name__)
 IS_PROD = os.environ.get("IS_PROD", False)
@@ -20,6 +18,8 @@ def allowed_file(filename):
 
 @app.route('/parse-file', methods=['POST'])
 def parse_file():
+    empty_directory("static/chat")
+
     file = request.files['0']
     if not allowed_file(file.filename):
         response = {
@@ -27,29 +27,25 @@ def parse_file():
             "error_message": "Please upload a valid file!",
         }
     else:
-        files = glob.glob('conversations/*')
-        for f in files:
-            os.remove(f)
-        files = glob.glob('static/chat/*')
-        for f in files:
-            os.remove(f)            
+        attachment_flag = False
         filename, file_extension = os.path.splitext(file.filename)
         filename = str(uuid.uuid4())
         tmp_filepath = os.path.join("conversations", filename + file_extension)
         file.save(tmp_filepath)
-        attachment_flag = False
-        if 'zip' in file_extension:
-            zip_ref = zipfile.ZipFile(tmp_filepath, 'r')
-            zip_ref.extractall("static/chat")
-            zip_ref.close()
-            os.remove(tmp_filepath)   
-            # Assumption that needs to be prooven      
+
+        if '.zip' == file_extension:
+            with zipfile.ZipFile(tmp_filepath, 'r') as zip_ref:
+                zip_ref.extractall("static/chat")
+            os.remove(tmp_filepath)
+
+            # Assumption that needs to be proven
             filename = '_chat'
             file_extension = '.txt'
             tmp_filepath = os.path.join("static/chat", filename + file_extension)
             attachment_flag = True
+
         try:
-            parsed_items, persons_list = get_parsed_file(tmp_filepath)
+            parsed_items, persons_list = get_parsed_file(tmp_filepath, is_media_available=attachment_flag)
             response = {
                 "success": True,
                 "chat": parsed_items,
@@ -62,12 +58,14 @@ def parse_file():
                 "error_message": str(e)
             }
 
-        os.remove(tmp_filepath)
+        # clears out attachments and conversations
+        empty_directory("conversations")
     return jsonify(response), 200
 
 
 @app.route('/', methods=['GET'])
 def main():
+    empty_directory("static/chat")
     ctx = {
         'is_prod': IS_PROD,
         'contribution_link': CONTRIBUTION_LINK,
