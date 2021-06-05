@@ -24,6 +24,7 @@ def _get_parsed_line(input_line, persons_list):
             break
         except (ValueError, OverflowError):
             continue
+
     if not timestamp_string:
         raise IndexError
     items = line.split(":")

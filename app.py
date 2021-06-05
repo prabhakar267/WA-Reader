@@ -6,12 +6,15 @@ from flask import Flask, request, render_template, jsonify, redirect, url_for
 from constants import CONTRIBUTION_LINK, DEFAULT_ERROR_MESSAGE
 from utils import get_parsed_file
 
+import zipfile
+import glob
+
 app = Flask(__name__)
 IS_PROD = os.environ.get("IS_PROD", False)
 
 
 def allowed_file(filename):
-    allowed_filetypes = ['txt', 'json']
+    allowed_filetypes = ['txt', 'json', 'zip']
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_filetypes
 
 
@@ -24,16 +27,34 @@ def parse_file():
             "error_message": "Please upload a valid file!",
         }
     else:
+        files = glob.glob('conversations/*')
+        for f in files:
+            os.remove(f)
+        files = glob.glob('static/chat/*')
+        for f in files:
+            os.remove(f)            
         filename, file_extension = os.path.splitext(file.filename)
         filename = str(uuid.uuid4())
         tmp_filepath = os.path.join("conversations", filename + file_extension)
         file.save(tmp_filepath)
+        attachment_flag = False
+        if 'zip' in file_extension:
+            zip_ref = zipfile.ZipFile(tmp_filepath, 'r')
+            zip_ref.extractall("static/chat")
+            zip_ref.close()
+            os.remove(tmp_filepath)   
+            # Assumption that needs to be prooven      
+            filename = '_chat'
+            file_extension = '.txt'
+            tmp_filepath = os.path.join("static/chat", filename + file_extension)
+            attachment_flag = True
         try:
             parsed_items, persons_list = get_parsed_file(tmp_filepath)
             response = {
                 "success": True,
                 "chat": parsed_items,
-                "users": persons_list
+                "users": persons_list,
+                "attachments": attachment_flag
             }
         except Exception as e:
             response = {
