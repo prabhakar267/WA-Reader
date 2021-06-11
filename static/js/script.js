@@ -103,7 +103,17 @@ function uploadFiles(event) {
                             $("div.text", "#" + chat_div_id).text(response.chat[chat_index].p);
                         }
                     } else {
-                        $("div.text", "#" + chat_div_id).text(response.chat[chat_index].p);
+                        arr_links = linkify.find(response.chat[chat_index].p);
+                        if (arr_links.length > 0){
+                            textline = response.chat[chat_index].p;
+                            for (var i = 0, l = arr_links.length; i < l; i++) {
+                                textline = textline.replace(arr_links[i].value, '<a href="'+arr_links[i].href+'" target="_blank">'+arr_links[i].value+'</a>')    
+                            }
+                            $("div.text", "#" + chat_div_id).html(textline);
+                        }
+                        else {
+                            $("div.text", "#" + chat_div_id).text(response.chat[chat_index].p);
+                        }
                     }
 
                     $("div.time", "#" + chat_div_id).text(response.chat[chat_index].t);
