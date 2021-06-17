@@ -20,7 +20,14 @@ def allowed_file(filename):
 def parse_file():
     empty_directory("static/chat")
 
-    file = request.files['0']
+    file_req = request.files
+    if len(file_req) == 0:
+        response = {
+            "success": False,
+            "error_message": "Please upload a file to proceed.",
+        }
+        return jsonify(response), 200
+    file = file_req['0']
     if not allowed_file(file.filename):
         response = {
             "success": False,
