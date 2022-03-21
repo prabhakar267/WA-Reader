@@ -4,7 +4,7 @@ import zipfile
 
 from flask import Flask, request, render_template, jsonify, redirect, url_for
 
-from constants import CONTRIBUTION_LINK, DEFAULT_ERROR_MESSAGE
+from constants import DEFAULT_ERROR_MESSAGE
 from utils import get_parsed_file, empty_directory
 
 app = Flask(__name__)
@@ -75,7 +75,6 @@ def main():
     empty_directory("static/chat")
     ctx = {
         'is_prod': IS_PROD,
-        'contribution_link': CONTRIBUTION_LINK,
         'default_error_message': DEFAULT_ERROR_MESSAGE,
     }
     if request.args.get('redirect'):
