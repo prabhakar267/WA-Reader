@@ -11,4 +11,4 @@ pycodestyle==2.5.0
 pyflakes==2.1.1
 python-dateutil==2.8.0
 six==1.12.0
-Werkzeug==2.2.3
+Werkzeug==3.0.1
