@@ -22,6 +22,7 @@ WA Reader is a platform to read WhatsApp conversations from text backups in a ea
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/prabhakar267/WA-Reader.svg)](https://starchart.cc/prabhakar267/WA-Reader)
+[![Stargazers over time](https://starchart.cc/prabhakar267/WA-Reader.svg?variant=adaptive)](https://starchart.cc/prabhakar267/WA-Reader)
+
 
 > Huge shout out to [@krzysiekh](https://github.com/krzysiekh) for creating the awesome logo we currently have. 
