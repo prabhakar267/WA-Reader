@@ -106,5 +106,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# conversations directory
+# project directories
 conversations/
+static/
