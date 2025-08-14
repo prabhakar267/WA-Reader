@@ -64,12 +64,30 @@ class WAParser {
             }
         }
 
-        // Format 2: "28.05.21, 21:44" (European format DD.MM.YY)
+        // Format 2: "28.05.21, 21:44" (European format DD.MM.YY with comma)
         const euDateTimeRegex = /^(\d{1,2})\.(\d{1,2})\.(\d{2,4}),?\s*(\d{1,2}):(\d{2})$/;
         const euMatch = cleanDateString.match(euDateTimeRegex);
         
         if (euMatch) {
             const [, day, month, year, hour, minute] = euMatch;
+            
+            // Handle 2-digit years (assume 20xx)
+            const fullYear = parseInt(year) < 100 ? 2000 + parseInt(year) : parseInt(year);
+            
+            // Create date object (month is 0-indexed in JavaScript)
+            const date = new Date(fullYear, parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
+            
+            if (!isNaN(date.getTime())) {
+                return date;
+            }
+        }
+
+        // Format 3: "28/05/21 21.44" (Alternative European format DD/MM/YY HH.MM)
+        const altEuDateTimeRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{2,4})\s+(\d{1,2})\.(\d{2})$/;
+        const altEuMatch = cleanDateString.match(altEuDateTimeRegex);
+        
+        if (altEuMatch) {
+            const [, day, month, year, hour, minute] = altEuMatch;
             
             // Handle 2-digit years (assume 20xx)
             const fullYear = parseInt(year) < 100 ? 2000 + parseInt(year) : parseInt(year);
