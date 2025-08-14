@@ -8,19 +8,18 @@
     <meta property="og:site_name" content="WA Reader"/>
     <meta property="og:title" content="WA Reader"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="{{ url_for('static', filename='img/wa-reader.png') }}"/>
+    <meta property="og:image" content="static/img/wa-reader.png"/>
     <meta property="og:description" content="WA Reader is a web-tool aimed to help users view their WhatsApp back-up chats in a familiar user-interface."/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/minEmoji2.css') }}">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static/css/minEmoji2.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}"/>
+    <link rel="shortcut icon" type="image/png" href="static/img/favicon.png"/>
     <title>WA Reader | By Prabhakar Gupta</title>
-    <script data-ad-client="ca-pub-1799032661457310" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-inverse">
-        <a class="navbar-brand nav-back" href="/"> <strong>WA Reader</strong> </a>
+        <a class="navbar-brand nav-back" href="#"> <strong>WA Reader</strong> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,7 +34,7 @@
         <div class="row welcome-header">
             <div class="card">
                 <div class="card-body">
-                    <img src="{{ url_for('static', filename='img/wa-reader.png') }}">
+                    <img src="static/img/wa-reader.png">
                 </div>
             </div>
         </div>
@@ -52,13 +51,13 @@
                         <p class="text-center">
                             <strong>WA Reader</strong> is a web-tool aimed to help users view their WhatsApp back-up chats in a familiar user-interface.<br>
                             You can upload the text file of your chat to the tool and you will be able to view instantly.<br>
-                            <strong>The tool is completely open-sourced making it secure to use.</strong><br>
+                            <strong>The tool processes files entirely in your browser - no data is sent to any server.</strong><br>
                             You can upload your WhatsApp Text file which is of format <code>.txt</code> that you get from the Email Conversation button in your WhatsApp app.
                         </p>
                         <form enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="form_file_field">
+                                    <input type="file" class="custom-file-input" id="form_file_field" accept=".txt,.json,.zip">
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>
@@ -74,7 +73,7 @@
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
                         <p class="font-weight-light text-center">
-                            We recently, launched the support for uploading the <code>.zip</code> file of your chat if you wish to view the attachments as well. This feature is still in development, please report bugs if you face any. Since we have to show the media files they are temporarily stored on the server, but as soon as you refresh the page, or click on view another chat all the files get deleted.
+                            We support uploading <code>.zip</code> files of your chat if you wish to view the attachments as well. All processing happens in your browser - no files are uploaded to any server.
                         </p>
                     </div>
                 </div>
@@ -86,7 +85,7 @@
                     <div class="col-md-10 offset-md-1">
                         <ul class="fa-ul">
                             <li><span class="fa-li"><i class="fas fa-dollar-sign"></i></span>Free to use</li>
-                            <li><span class="fa-li"><i class="fas fa-user-secret"></i></span>Safe and respects privacy</li>
+                            <li><span class="fa-li"><i class="fas fa-user-secret"></i></span>100% Private - processes files in your browser</li>
                             <li><span class="fa-li"><i class="fas fas fa-laptop-code"></i></span>Code is open source</li>
                         </ul>
                         <hr>
@@ -102,7 +101,7 @@
                         <div id="accordion" role="tablist" aria-multiselectable="false">
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    I keep getting <i>"{{ data['default_error_message'] }}"</i>, even though I am uploading a file?
+                                    I keep getting <i>"It wasn't a valid text file or we were not able to convert it"</i>, even though I am uploading a file?
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                     <div class="card-body">
@@ -119,7 +118,7 @@
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                     <div class="card-body">
                                         <strong>No.</strong>
-                                        <br>Your chat gets deleted as soon as you upload the file. You can feel safe on that front.
+                                        <br>Your chat is processed entirely in your browser and never leaves your device. Complete privacy guaranteed.
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +129,7 @@
                                 <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                                     <div class="card-body">
                                         <strong>No.</strong>
-                                        <br>Since your chat is getting deleted as soon as you upload the File, you cannot preserve your chat history for you to visit later.
+                                        <br>Since your chat is only processed in memory and not stored anywhere, you cannot preserve your chat history for you to visit later. You'll need to upload the file again.
                                     </div>
                                 </div>
                             </div>
@@ -170,22 +169,10 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/jMinEmoji2.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="static/js/jMinEmoji2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-linkify/2.1.9/linkify.min.js" integrity="sha512-kxj7VjlzsQgiku2vbRcZI0FJ0dXmPsiRLugiRxJrCROusKHaFfX/hGDD1/L/R0Y+xI8zlA2B5nm6USapz7nQbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-{% if data['is_prod'] %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57220954-4"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-57220954-4');
-    </script>
-{% endif %}
-{% if error_message is defined %}
-    <script>
-    show_error_message("{{ error_message }}");
-    </script>
-{% endif %}
+<script type="text/javascript" src="static/js/wa-parser.js"></script>
+<script type="text/javascript" src="static/js/script.js"></script>
 </body>
 </html>
