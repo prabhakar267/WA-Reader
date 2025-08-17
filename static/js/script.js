@@ -15,6 +15,13 @@ function submitForm(event) {
     event.stopPropagation();
     event.preventDefault();
     if (typeof files != 'undefined' && files.length > 0) {
+        // Track file upload attempt
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'file_upload_attempt', {
+                'event_category': 'engagement',
+                'event_label': 'chat_file'
+            });
+        }
         processFiles(event);
     } else {
         show_error_message('Please upload a file to proceed.');
@@ -30,6 +37,14 @@ function prepareUpload(event) {
 }
 
 function download() {
+    // Track download event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'chat_download', {
+            'event_category': 'engagement',
+            'event_label': 'json_export'
+        });
+    }
+    
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentFile));
     var dlAnchorElem = document.createElement('a')
     dlAnchorElem.setAttribute("href", dataStr);
@@ -80,10 +95,26 @@ async function processFiles(event) {
         console.log("Users count:" + result.users.length);
         console.log("Are attachments present:" + result.attachments);
 
+        // Track successful chat processing
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'chat_processed_successfully', {
+                'event_category': 'engagement',
+                'event_label': 'chat_conversion',
+                'value': result.chat.length
+            });
+        }
+
         // Render the chat
         renderChat(result);
 
     } catch (error) {
+        // Track processing errors
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'chat_processing_error', {
+                'event_category': 'error',
+                'event_label': error.message
+            });
+        }
         show_error_message(error.message);
     } finally {
         // Reset UI
